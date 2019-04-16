@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_job"
+        android:icon="@drawable/ic_nav_job_selector"
+        android:title="@string/navJob" />
+    <item
+        android:id="@+id/nav_seminar"
+        android:icon="@drawable/ic_nav_seminar_selector"
+        android:title="@string/navSeminar" />
+    <item
+        android:id="@+id/nav_discover"
+        android:icon="@drawable/ic_nav_discover_selector"
+        android:title="@string/navDiscover" />
+    <item
+        android:id="@+id/nav_mine"
+        android:icon="@drawable/ic_nav_mine_selector"
+        android:title="@string/navMine" />
+</menu>

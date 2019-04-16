@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">校招</string>
+    <string name="navJob">职位</string>
+    <string name="navSeminar">宣讲会</string>
+    <string name="navDiscover">发现</string>
+    <string name="navMine">我的</string>
+    <string name="defaultText">测试文字</string>
+    <string name="loginHint">点击登录</string>
+    <string name="loginSubHint">勇于开始，才能找到成功的路</string>
+    <string name="resume">我的简历</string>
+    <string name="job_collection">职位收藏</string>
+    <string name="focused_co">关注公司</string>
+    <string name="delivery">我的投递</string>
+    <string name="setting">设置</string>
+    <string name="feedback">意见反馈</string>
+    <string name="share">分享给同学</string>
+    <string name="about">关于我们</string>
+</resources>
