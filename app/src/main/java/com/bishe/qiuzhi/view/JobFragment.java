@@ -9,12 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.adapter.JobAdapter;
-import com.bishe.qiuzhi.app.App;
-import com.bishe.qiuzhi.model.JobBean;
-import com.bishe.qiuzhi.utils.GsonUtil;
+import com.bishe.qiuzhi.net.Api;
+import com.bishe.qiuzhi.net.OnGsonRespListener;
+import com.bishe.qiuzhi.model.PositionBean;
+
+import java.util.List;
 
 public class JobFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -40,6 +43,33 @@ public class JobFragment extends Fragment {
     }
 
     private void initData() {
-        mJobAdapter.setData(JobBean.arrayJobBeanFromData(GsonUtil.getJsonStrFromFile(App.getApp(), "job.json")));
+        //mJobAdapter.setData(PositionBean.arrayJobBeanFromData(GsonUtil.getJsonStrFromFile(App.getApp(), "job.json")));
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("http://ql.crm-embrace.vip/").addConverterFactory(GsonConverterFactory.create())
+//                .client(new OkHttpClient())
+//                .build();
+//        ApiService apiService = retrofit.create(ApiService.class);
+//        Call<Response<List<PositionBean>>> job = apiService.getJobs();
+//        job.enqueue(new Callback<Response<List<PositionBean>>>() {
+//            @Override
+//            public void onResponse(Call<Response<List<PositionBean>>> call, retrofit2.Response<Response<List<PositionBean>>> response) {
+//                mJobAdapter.setData((List<PositionBean>) response.body().getData());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Response<List<PositionBean>>> call, Throwable t) {
+//            }
+//        });
+        Api.getPositionData(new OnGsonRespListener<List<PositionBean>>() {
+            @Override
+            public void onSuccess(List<PositionBean> data) {
+                mJobAdapter.setData(data);
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

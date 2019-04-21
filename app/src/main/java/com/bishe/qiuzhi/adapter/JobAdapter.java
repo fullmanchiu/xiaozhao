@@ -10,13 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
-import com.bishe.qiuzhi.model.JobBean;
+import com.bishe.qiuzhi.model.PositionBean;
 
 import java.util.List;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
     private Context mContext;
-    private List<JobBean> jobBeans;
+    private List<PositionBean> positionBeans;
 
     public JobAdapter(Context ctx) {
         mContext = ctx;
@@ -32,23 +32,25 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull JobViewHolder jobViewHolder, int position) {
-        final JobBean jobBean = jobBeans.get(position);
-        jobViewHolder.tvTitle.setText(jobBean.getTitle());
-        jobViewHolder.tvSalary.setText(jobBean.getSalary());
-        jobViewHolder.tvCompanyName.setText(jobBean.getCompanyName());
-        jobViewHolder.tvDate.setText(jobBean.getDate());
-        jobViewHolder.tvLocation.setText(jobBean.getLocation());
-        jobViewHolder.tvNum.setText("招" + jobBean.getNum() + "人");
+        final PositionBean positionBean = positionBeans.get(position);
+        jobViewHolder.tvTitle.setText(positionBean.getTitle());
+        jobViewHolder.tvSalary.setText(positionBean.getSalaryMin() + "~" + positionBean.getSalaryMax());
+        jobViewHolder.tvCompanyName.setText(positionBean.getCompanyName());
+        jobViewHolder.tvDate.setText(positionBean.getPublishTime());
+        jobViewHolder.tvLocation.setText(positionBean.getLocation());
+        jobViewHolder.tvNum.setText("招" + positionBean.getNum() + "人");
     }
 
 
     @Override
     public int getItemCount() {
-        return jobBeans.size();
+        if (positionBeans != null)
+            return positionBeans.size();
+        return 0;
     }
 
-    public void setData(List<JobBean> jobBeans) {
-        this.jobBeans = jobBeans;
+    public void setData(List<PositionBean> positionBeans) {
+        this.positionBeans = positionBeans;
         notifyDataSetChanged();
     }
 
