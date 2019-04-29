@@ -1,4 +1,4 @@
-package com.bishe.qiuzhi.adapter;
+package com.bishe.qiuzhi.module.seminar.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
-import com.bishe.qiuzhi.model.SeminarBean;
+import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 
 import java.util.List;
 
@@ -33,14 +33,16 @@ public class SeminarAdapter extends RecyclerView.Adapter<SeminarAdapter.SeminarV
     @Override
     public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int position) {
         final SeminarBean seminarBean = seminarBeans.get(position);
-        seminarViewHolder.tvTitle.setText(seminarBean.getTitle());
-        seminarViewHolder.tvDate.setText(seminarBean.getDate());
-        seminarViewHolder.tvLocation.setText(seminarBean.getLocation());
+        seminarViewHolder.tvTitle.setText(seminarBean.getSeminar_name());
+        seminarViewHolder.tvDate.setText(seminarBean.getUpdate_time());
+        seminarViewHolder.tvLocation.setText(seminarBean.getAddress());
     }
 
     @Override
     public int getItemCount() {
-        return seminarBeans.size();
+        if (seminarBeans != null)
+            return seminarBeans.size();
+        return 0;
     }
 
     public void setData(List<SeminarBean> arraySeminarBeanFromData) {

@@ -1,4 +1,4 @@
-package com.bishe.qiuzhi.model;
+package com.bishe.qiuzhi.module.position.model;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;

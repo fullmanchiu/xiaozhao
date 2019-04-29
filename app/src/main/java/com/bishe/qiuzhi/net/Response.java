@@ -1,7 +1,5 @@
 package com.bishe.qiuzhi.net;
 
-import com.bishe.qiuzhi.model.BaseResponse;
-
 public class Response<T> extends BaseResponse {
     private int code;
     private String msg;

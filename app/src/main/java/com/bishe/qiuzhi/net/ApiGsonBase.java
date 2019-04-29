@@ -2,9 +2,6 @@ package com.bishe.qiuzhi.net;
 
 import android.util.Log;
 
-import com.bishe.qiuzhi.model.BaseResponse;
-import com.bishe.qiuzhi.net.OnGsonRespListener;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -19,12 +16,15 @@ public class ApiGsonBase {
     public static final String TAG = "Api";
 
     public static Retrofit getGsonRetrofit(String domain) {
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(message -> Log.d(TAG, message));
+
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);//这一句一定要记得写，否则没有数据输出
         OkHttpClient client = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .connectTimeout(10_000, TimeUnit.MILLISECONDS)
                 .readTimeout(30_000, TimeUnit.MILLISECONDS)
                 .writeTimeout(10_000, TimeUnit.MILLISECONDS)
-                .addInterceptor(new HttpLoggingInterceptor(message -> Log.d(TAG, message))).build();
+                .addInterceptor(logInterceptor).build();
 
         return new Retrofit.Builder()
                 .baseUrl(domain)
@@ -39,10 +39,14 @@ public class ApiGsonBase {
             public void onResponse(Call<R> call, Response<R> response) {
                 if (listener != null) {
                     R data = response.body();
-                    if (data.isSuccess()) {
-                        listener.onSuccess(data.getData());
+                    if (data != null) {
+                        if (data.isSuccess()) {
+                            listener.onSuccess(data.getData());
+                        } else {
+                            listener.onFail(data.getMessage());
+                        }
                     } else {
-                        listener.onFail(data.getMessage());
+                        Log.d(TAG, "response is null");
                     }
                 }
             }

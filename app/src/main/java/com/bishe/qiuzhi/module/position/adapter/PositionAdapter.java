@@ -1,4 +1,4 @@
-package com.bishe.qiuzhi.adapter;
+package com.bishe.qiuzhi.module.position.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,15 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
-import com.bishe.qiuzhi.model.PositionBean;
+import com.bishe.qiuzhi.module.position.model.PositionBean;
 
 import java.util.List;
 
-public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
+public class PositionAdapter extends RecyclerView.Adapter<PositionAdapter.JobViewHolder> {
     private Context mContext;
     private List<PositionBean> positionBeans;
 
-    public JobAdapter(Context ctx) {
+    public interface OnItemCLickListener {
+        void onClick(int position, PositionBean positionBean);
+    }
+
+    private OnItemCLickListener onItemCLickListener;
+
+    public void setOnItemCLickListener(OnItemCLickListener lickListener) {
+        this.onItemCLickListener = lickListener;
+    }
+
+    public PositionAdapter(Context ctx) {
         mContext = ctx;
     }
 
@@ -39,6 +49,14 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
         jobViewHolder.tvDate.setText(positionBean.getPublishTime());
         jobViewHolder.tvLocation.setText(positionBean.getLocation());
         jobViewHolder.tvNum.setText("招" + positionBean.getNum() + "人");
+        if (onItemCLickListener != null) {
+            jobViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemCLickListener.onClick(position, positionBean);
+                }
+            });
+        }
     }
 
 

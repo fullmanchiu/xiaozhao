@@ -1,4 +1,4 @@
-package com.bishe.qiuzhi.view;
+package com.bishe.qiuzhi.module.seminar.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
-import com.bishe.qiuzhi.adapter.SeminarAdapter;
-import com.bishe.qiuzhi.app.App;
-import com.bishe.qiuzhi.model.SeminarBean;
-import com.bishe.qiuzhi.utils.GsonUtil;
+import com.bishe.qiuzhi.module.seminar.adapter.SeminarAdapter;
+import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
+import com.bishe.qiuzhi.net.Api;
+import com.bishe.qiuzhi.net.OnGsonRespListener;
+
+import java.util.List;
 
 public class SeminarFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -40,6 +43,16 @@ public class SeminarFragment extends Fragment {
     }
 
     private void initData() {
-        mSeminarAdapter.setData(SeminarBean.arraySeminarBeanFromData(GsonUtil.getJsonStrFromFile(App.getApp(), "seminar.json")));
+        Api.getSeminarData(new OnGsonRespListener<List<SeminarBean>>() {
+            @Override
+            public void onSuccess(List<SeminarBean> data) {
+                mSeminarAdapter.setData(data);
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

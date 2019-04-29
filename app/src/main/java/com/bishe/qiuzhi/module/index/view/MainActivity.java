@@ -1,29 +1,40 @@
-package com.bishe.qiuzhi.view;
+package com.bishe.qiuzhi.module.index.view;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.adapter.ViewPagerAdapter;
+import com.bishe.qiuzhi.app.BaseActivity;
+import com.bishe.qiuzhi.module.index.contract.MainContract;
+import com.bishe.qiuzhi.module.index.presenter.MainPresenterImpl;
+import com.bishe.qiuzhi.module.position.view.PositionFragment;
+import com.bishe.qiuzhi.module.seminar.view.SeminarFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity<MainPresenterImpl> implements MainContract.View, BottomNavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener {
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
     private MenuItem menuItem;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView();
+    protected void initEventAndData() {
         initListener();
     }
 
-    private void initView() {
+    @Override
+    protected void createPresenter() {
+
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         viewPager = findViewById(R.id.viewPager);
         setupViewPager();
@@ -32,12 +43,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new JobFragment());
+        adapter.addFragment(new PositionFragment());
         adapter.addFragment(new SeminarFragment());
         adapter.addFragment(new DiscoverFragment());
         adapter.addFragment(new MineFragment());
         viewPager.setAdapter(adapter);
-
     }
 
     private void initListener() {

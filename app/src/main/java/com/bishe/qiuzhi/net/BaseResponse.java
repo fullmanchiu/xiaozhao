@@ -1,4 +1,4 @@
-package com.bishe.qiuzhi.model;
+package com.bishe.qiuzhi.net;
 
 public abstract class BaseResponse<T> {
     public abstract boolean isSuccess();
