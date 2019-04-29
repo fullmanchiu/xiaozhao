@@ -67,7 +67,7 @@ public class App extends Application {
         return userInfo;
     }
 
-    public boolean getIsLogin() {
+    public boolean isLogin() {
         return UserManager.getUser() == null;
     }
 }

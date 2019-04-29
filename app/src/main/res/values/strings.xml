@@ -28,4 +28,9 @@
     <string name="etHintSignUpEmail">请输入邮箱，用户找回密码</string>
     <string name="etHintSignUpTel">请输入手机号</string>
     <string name="errorPwdNotSame">请确认两次密码输入一致</string>
+    <string name="account_setting">账号设置</string>
+    <string name="check_update">版本更新</string>
+    <string name="no_need_update">当前为最新版本</string>
+    <string name="rate">鼓励我们</string>
+    <string name="clean_ram">清除缓存</string>
 </resources>

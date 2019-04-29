@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.position.view.PositionDetailActivity" />
-        <activity android:name=".module.settings.SettingsActivity" />
+        <activity android:name=".module.settings.view.SettingsActivity" />
 
         <provider
             android:name=".db.UserProvider"
