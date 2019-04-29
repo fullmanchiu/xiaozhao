@@ -3,16 +3,21 @@ package com.bishe.qiuzhi.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.bishe.qiuzhi.db.UserManager;
+import com.bishe.qiuzhi.module.login.model.LoginModel;
+
 import java.util.HashSet;
 
 public class App extends Application {
     private static App instance;
     private HashSet<Activity> allActivities;
+    private LoginModel.UserinfoBean userInfo;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        UserManager.init(getInstance());
     }
 
     public static synchronized App getInstance() {
@@ -48,5 +53,21 @@ public class App extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
+    }
+
+    public void setUserDate(LoginModel.UserinfoBean userinfo) {
+        this.userInfo = userinfo;
+        UserManager.saveUser(userinfo);
+    }
+
+    public LoginModel.UserinfoBean getUserData() {
+        if (userInfo == null) {
+            userInfo = UserManager.getUser();
+        }
+        return userInfo;
+    }
+
+    public boolean getIsLogin() {
+        return UserManager.getUser() == null;
     }
 }

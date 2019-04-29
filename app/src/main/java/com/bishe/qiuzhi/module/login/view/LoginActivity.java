@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
+import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.app.BaseActivity;
 import com.bishe.qiuzhi.module.login.contract.LoginContract;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
@@ -53,6 +54,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             @Override
             public void onSuccess(LoginModel data) {
                 //TODO save userdata
+                App.getInstance().setUserDate(data.getUserinfo());
+                setResult(RESULT_OK);
                 finish();
             }
 

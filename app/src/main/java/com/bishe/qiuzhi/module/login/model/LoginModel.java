@@ -16,13 +16,6 @@ public class LoginModel implements LoginContract.Model {
 
     private UserinfoBean userinfo;
 
-    public static List<LoginModel> arrayLoginModelFromData(String str) {
-
-        Type listType = new TypeToken<ArrayList<LoginModel>>() {
-        }.getType();
-
-        return new Gson().fromJson(str, listType);
-    }
 
     public UserinfoBean getUserinfo() {
         return userinfo;
@@ -33,6 +26,13 @@ public class LoginModel implements LoginContract.Model {
     }
 
     public static class UserinfoBean {
+        public static final String USER_TABLE_NAME = "user";
+        public static final String USER_TABLE_COLUMN_USER_ID = "user_id";
+        public static final String USER_TABLE_COLUMN_USER_NAME = "user_name";
+        public static final String USER_TABLE_COLUMN_NICK_NAME = "nick_name";
+        public static final String USER_TABLE_COLUMN_MOBILE = "mobile";
+        public static final String USER_TABLE_COLUMN_AVATAR = "avatar";
+        public static final String USER_TABLE_COLUMN_TOKEN = "token";
         /**
          * id : 1
          * username : admin
@@ -58,6 +58,15 @@ public class LoginModel implements LoginContract.Model {
         private int createtime;
         private int expiretime;
         private int expires_in;
+
+        public UserinfoBean(int userId, String userName, String nickName, String mobile, String avatar, String token) {
+            this.user_id = userId;
+            this.username = userName;
+            this.nickname = nickName;
+            this.mobile = mobile;
+            this.avatar = avatar;
+            this.token = token;
+        }
 
         public static List<UserinfoBean> arrayUserinfoBeanFromData(String str) {
 
