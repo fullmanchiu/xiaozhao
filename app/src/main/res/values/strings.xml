@@ -33,4 +33,5 @@
     <string name="no_need_update">当前为最新版本</string>
     <string name="rate">鼓励我们</string>
     <string name="clean_ram">清除缓存</string>
+    <string name="sign_out">退出登录</string>
 </resources>

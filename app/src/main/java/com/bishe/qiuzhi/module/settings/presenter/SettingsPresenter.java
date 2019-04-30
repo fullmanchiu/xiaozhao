@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.module.settings.presenter;
 
 import com.bishe.qiuzhi.module.settings.contract.SettingsContract;
+import com.bishe.qiuzhi.net.Api;
 
 public class SettingsPresenter implements SettingsContract.Presenter {
     private SettingsContract.View mView;
@@ -13,5 +14,10 @@ public class SettingsPresenter implements SettingsContract.Presenter {
     @Override
     public void detachView() {
         mView = null;
+    }
+
+    @Override
+    public void signOut() {
+        Api.signOut(mView.onSignOut());
     }
 }

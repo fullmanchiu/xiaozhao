@@ -21,7 +21,8 @@ import static android.app.Activity.RESULT_OK;
 public class MineFragment extends Fragment {
     private TextView tvName;
     private RelativeLayout rlSettings;
-    private int requestCode = 100;
+    private final int requestCodeLogin = 100;
+    private final int requestCodeSignOut = 101;
 
     @Nullable
     @Override
@@ -33,9 +34,9 @@ public class MineFragment extends Fragment {
             initUserData();
             tvName.setOnClickListener(null);
         } else {
-            tvName.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), LoginActivity.class), requestCode));
+            tvName.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), LoginActivity.class), requestCodeLogin));
         }
-        rlSettings.setOnClickListener(v -> startActivity(new Intent(getContext(), SettingsActivity.class)));
+        rlSettings.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), SettingsActivity.class), requestCodeSignOut));
         return view;
     }
 
@@ -45,10 +46,23 @@ public class MineFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == this.requestCode) {
-            if (resultCode == RESULT_OK) {
-                initUserData();
-            }
+        switch (requestCode) {
+            case requestCodeLogin:
+                if (resultCode == RESULT_OK) {
+                    initUserData();
+                }
+                break;
+            case requestCodeSignOut:
+                if (requestCode == RESULT_OK) {
+                    signOut();
+                }
+                break;
+            default:
         }
+    }
+
+    private void signOut() {
+        tvName.setText(R.string.loginHint);
+        tvName.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), LoginActivity.class), requestCodeLogin));
     }
 }

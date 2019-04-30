@@ -24,4 +24,7 @@ public interface ApiService {
 
     @GET("api/user/register")
     Call<Response> signUp(@Query("username") String userName, @Query("password") String pwd, @Query("email") String email, @Query("mobile") String tel);
+
+    @GET("api/user/logout")
+    Call<Response> signOut(@Query("token") String token);
 }

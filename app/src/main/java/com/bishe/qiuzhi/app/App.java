@@ -68,6 +68,11 @@ public class App extends Application {
     }
 
     public boolean isLogin() {
-        return UserManager.getUser() == null;
+        return UserManager.getUser() != null;
+    }
+
+    public void signOut() {
+        userInfo = null;
+        UserManager.deleteUser();
     }
 }

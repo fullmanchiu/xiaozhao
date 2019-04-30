@@ -132,5 +132,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/bg_sign_out"
+        android:text="@string/sign_out"
+        android:textColor="@color/colorTextNormal"
+        android:textSize="29sp"
         app:layout_constraintTop_toBottomOf="@id/ll_clean_ram" />
 </android.support.constraint.ConstraintLayout>
