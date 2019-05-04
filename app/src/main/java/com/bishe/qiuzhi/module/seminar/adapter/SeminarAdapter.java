@@ -3,6 +3,7 @@ package com.bishe.qiuzhi.module.seminar.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
+import com.bishe.qiuzhi.app.App;
+import com.bishe.qiuzhi.app.BaseActivity;
+import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
+import com.bishe.qiuzhi.utils.DateUtil;
+import com.bumptech.glide.Glide;
 
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 public class SeminarAdapter extends RecyclerView.Adapter<SeminarAdapter.SeminarViewHolder> {
@@ -33,9 +40,11 @@ public class SeminarAdapter extends RecyclerView.Adapter<SeminarAdapter.SeminarV
     @Override
     public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int position) {
         final SeminarBean seminarBean = seminarBeans.get(position);
-        seminarViewHolder.tvTitle.setText(seminarBean.getSeminar_name());
-        seminarViewHolder.tvDate.setText(seminarBean.getUpdate_time());
-        seminarViewHolder.tvLocation.setText(seminarBean.getAddress());
+        seminarViewHolder.tvTitle.setText(seminarBean.getName());
+        String date = DateUtil.simpleFormat("MM-dd    hh:mm", seminarBean.getStart_time()) + "-" + DateUtil.simpleFormat("hh:mm", seminarBean.getEnd_time());
+        seminarViewHolder.tvDate.setText(date);
+        seminarViewHolder.tvLocation.setText(seminarBean.getSchool().getName() + " · " + seminarBean.getAddress());
+        Glide.with(mContext).load(Constants.DOMAIN + seminarBean.getSchool().getImage()).into(seminarViewHolder.ivLogo);
     }
 
     @Override

@@ -3,12 +3,14 @@ package com.bishe.qiuzhi.net;
 
 import com.bishe.qiuzhi.module.login.model.LoginModel;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
+import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -27,4 +29,7 @@ public interface ApiService {
 
     @GET("api/user/logout")
     Call<Response> signOut(@Query("token") String token);
+
+    @GET("api/Position/getPosition")
+    Call<Response<PositionDetailModel>> getPositionDetail(@Query("position_id") int id);
 }

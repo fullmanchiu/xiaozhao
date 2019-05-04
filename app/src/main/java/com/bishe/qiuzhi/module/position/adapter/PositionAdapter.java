@@ -10,8 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
+import com.bishe.qiuzhi.app.App;
+import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
+import com.bishe.qiuzhi.net.ApiService;
+import com.bishe.qiuzhi.utils.DateUtil;
+import com.bumptech.glide.Glide;
 
+import java.util.Date;
 import java.util.List;
 
 public class PositionAdapter extends RecyclerView.Adapter<PositionAdapter.JobViewHolder> {
@@ -44,18 +50,15 @@ public class PositionAdapter extends RecyclerView.Adapter<PositionAdapter.JobVie
     public void onBindViewHolder(@NonNull JobViewHolder jobViewHolder, int position) {
         final PositionBean positionBean = positionBeans.get(position);
         jobViewHolder.tvTitle.setText(positionBean.getTitle());
-        jobViewHolder.tvSalary.setText(positionBean.getSalaryMin() + "~" + positionBean.getSalaryMax());
-        jobViewHolder.tvCompanyName.setText(positionBean.getCompanyName());
-        jobViewHolder.tvDate.setText(positionBean.getPublishTime());
+        jobViewHolder.tvSalary.setText(positionBean.getSalary_min() + "~" + positionBean.getSalary_max());
+        jobViewHolder.tvCompanyName.setText(positionBean.getCompany().getName());
+        jobViewHolder.tvDate.setText(DateUtil.convertTimeToFormat(App.getInstance(), positionBean.getPublish_time()));
         jobViewHolder.tvLocation.setText(positionBean.getLocation());
         jobViewHolder.tvNum.setText("招" + positionBean.getNum() + "人");
+        Glide.with(mContext).load(Constants.DOMAIN + positionBean.getCompany().getImage()).into(jobViewHolder.ivLogo);
+        //Glide.with(App.getInstance()).load(positionBean.getCompany().getImage()).into(jobViewHolder.ivLogo);
         if (onItemCLickListener != null) {
-            jobViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemCLickListener.onClick(position, positionBean);
-                }
-            });
+            jobViewHolder.itemView.setOnClickListener(v -> onItemCLickListener.onClick(position, positionBean));
         }
     }
 

@@ -1,23 +1,25 @@
 package com.bishe.qiuzhi.module.position.model;
 
-public class PositionBean {
+import com.bishe.qiuzhi.module.position.contract.PositionDetailContract;
+
+public class PositionDetailModel implements PositionDetailContract.Model {
 
     /**
-     * id : 3
-     * title : 插画实习生
+     * id : 1
+     * title : Android实习生
      * salary_min : 3000
      * salary_max : 5000
-     * company_id : 6
-     * location : 苏州
+     * company_id : 1
+     * location : 杭州
      * num : 3
-     * publish_time : 1555754312
+     * publish_time : 2019-04-20 17:52:54
      * industry :
      * type : 1
-     * content : 43
+     * content : 345345
      * weigh : 0
-     * create_time : 2019-04-20 17:58:36
-     * update_time : 2019-04-20 17:58:38
-     * company : {"id":6,"name":"华为","image":"https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=31d4b5911ddfa9ecfd2e51115aeb903e/b03533fa828ba61e6bd41fa24d34970a304e5901.jpg","describe":"华为公司","industry":"计算机软件","company_scale":"少于50人","company_type":"外资独企","weigh":6,"create_time":"2019-04-27 23:29:11","update_time":"2019-04-27 23:29:11"}
+     * create_time : 2019-04-20 17:52:57
+     * update_time : 2019-04-20 17:53:00
+     * company : {"id":1,"name":"阿里巴巴","image":"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=1ef9303ddb1373f0f53f68999c342cc6/caef76094b36acafe1673eba76d98d1000e99cf5.jpg","describe":"的撒二哈人家客户给了他人体秤吃VBVBVBVB xfhdcr6 f fg7t6fgv7 7gvbyuyabv67uuie4htuiehtarughuiarhguiarhguifghruifguisghfi8uacb4ycv7893ycvn4yc784ctn7yxc747xcn834","industry":"计算机软件","company_scale":"少于50人","company_type":"外资独企","weigh":1,"create_time":"2019-04-25 22:57:19","update_time":"2019-04-25 22:57:19"}
      */
 
     private int id;
@@ -158,16 +160,16 @@ public class PositionBean {
 
     public static class CompanyBean {
         /**
-         * id : 6
-         * name : 华为
-         * image : https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=31d4b5911ddfa9ecfd2e51115aeb903e/b03533fa828ba61e6bd41fa24d34970a304e5901.jpg
-         * describe : 华为公司
+         * id : 1
+         * name : 阿里巴巴
+         * image : https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=1ef9303ddb1373f0f53f68999c342cc6/caef76094b36acafe1673eba76d98d1000e99cf5.jpg
+         * describe : 的撒二哈人家客户给了他人体秤吃VBVBVBVB xfhdcr6 f fg7t6fgv7 7gvbyuyabv67uuie4htuiehtarughuiarhguiarhguifghruifguisghfi8uacb4ycv7893ycvn4yc784ctn7yxc747xcn834
          * industry : 计算机软件
          * company_scale : 少于50人
          * company_type : 外资独企
-         * weigh : 6
-         * create_time : 2019-04-27 23:29:11
-         * update_time : 2019-04-27 23:29:11
+         * weigh : 1
+         * create_time : 2019-04-25 22:57:19
+         * update_time : 2019-04-25 22:57:19
          */
 
         private int id;

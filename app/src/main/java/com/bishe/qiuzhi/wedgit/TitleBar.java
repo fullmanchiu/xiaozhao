@@ -30,6 +30,10 @@ public class TitleBar extends ConstraintLayout {
         }
     }
 
+    public void setTitle(String title) {
+        tvTitle.setText(title);
+    }
+
 
     public interface OnBackClickListener {
         void onClick();

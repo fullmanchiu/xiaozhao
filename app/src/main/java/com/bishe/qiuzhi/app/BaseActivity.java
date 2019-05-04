@@ -42,7 +42,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     protected abstract void createPresenter();
 
-
     @Override
     public void showError() {
 

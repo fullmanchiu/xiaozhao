@@ -10,9 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
+import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.position.adapter.PositionAdapter;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.net.Api;
@@ -23,17 +25,20 @@ import java.util.List;
 public class PositionFragment extends Fragment {
     private RecyclerView recyclerView;
     private PositionAdapter mPositionAdapter;
+    private ProgressBar progressBar;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.job_fragment, container, false);
+        progressBar = view.findViewById(R.id.pb);
         recyclerView = view.findViewById(R.id.rv_job);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mPositionAdapter = new PositionAdapter(getContext());
         mPositionAdapter.setOnItemCLickListener((position, positionBean) -> {
             Intent intent = new Intent(getActivity(), PositionDetailActivity.class);
+            intent.putExtra(Constants.EXTRA_POSITION_ID, positionBean.getId());
             startActivity(intent);
         });
         recyclerView.setAdapter(mPositionAdapter);
@@ -52,11 +57,14 @@ public class PositionFragment extends Fragment {
             @Override
             public void onSuccess(List<PositionBean> data) {
                 mPositionAdapter.setData(data);
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFail(String error) {
                 Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
             }
         });
     }

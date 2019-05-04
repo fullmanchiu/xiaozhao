@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_avatar"
+        android:id="@+id/iv_logo"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
@@ -36,8 +36,8 @@
         android:text="@string/defaultText"
         android:textColor="@color/colorTextNormal"
         android:textSize="14sp"
-        app:layout_constraintLeft_toRightOf="@id/iv_avatar"
-        app:layout_constraintTop_toTopOf="@id/iv_avatar" />
+        app:layout_constraintLeft_toRightOf="@id/iv_logo"
+        app:layout_constraintTop_toTopOf="@id/iv_logo" />
 
     <TextView
         android:id="@+id/tv_date"
@@ -47,6 +47,6 @@
         android:text="@string/defaultText"
         android:textColor="@color/colorTextNormal"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
-        app:layout_constraintLeft_toRightOf="@id/iv_avatar" />
+        app:layout_constraintBottom_toBottomOf="@id/iv_logo"
+        app:layout_constraintLeft_toRightOf="@id/iv_logo" />
 </android.support.constraint.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.bishe.qiuzhi.net;
 import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
+import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 
 import java.util.List;
@@ -46,5 +47,9 @@ public class Api {
 
     public static void signOut(OnGsonRespListener listener) {
         ApiGsonBase.enqueue(apiService.signOut(getToken()), listener);
+    }
+
+    public static void getPositionDetail(int id, OnGsonRespListener<PositionDetailModel> listener) {
+        ApiGsonBase.enqueue(apiService.getPositionDetail(id), listener);
     }
 }
