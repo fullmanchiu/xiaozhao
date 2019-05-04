@@ -21,7 +21,7 @@ public class Api {
     static {
         HTTP_SCHEMA = "http";
         HTTP_SCHEMA_SUFFIX = "://";
-        HOST = "ql.crm-embrace.vip";
+        HOST = "xz.colafans.cn/index.php/";
         apiService = ApiGsonBase.getGsonRetrofit(getDomain()).create(ApiService.class);
     }
 

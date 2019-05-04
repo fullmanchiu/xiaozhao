@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.module.position.view;
 
 import android.support.constraint.ConstraintLayout;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,7 +22,7 @@ import java.text.SimpleDateFormat;
 
 public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter> implements PositionDetailContract.View {
     private TitleBar titleBar;
-    private TextView tvPositionName, tvDate, tvNum, tvLocation, tvCompanyName, tvCompanyType;
+    private TextView tvPositionName, tvDate, tvNum, tvLocation, tvCompanyName, tvCompanyType, tvJobDecription;
     private ImageView ivCompanyLogo;
     private ConstraintLayout constraintLayout;
     private ProgressBar progressBar;
@@ -45,6 +46,7 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
         tvCompanyName = findViewById(R.id.tv_company_name);
         ivCompanyLogo = findViewById(R.id.iv_company_logo);
         tvCompanyType = findViewById(R.id.tv_company_type);
+        tvJobDecription = findViewById(R.id.tv_job_description);
     }
 
     @Override
@@ -75,6 +77,7 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
                     Glide.with(mContext).load(Constants.DOMAIN + data.getCompany().getImage()).into(ivCompanyLogo);
                     tvCompanyName.setText(data.getCompany().getName());
                     tvCompanyType.setText(data.getCompany().getCompany_type());
+                    tvJobDecription.setText(Html.fromHtml(data.getContent()));
                 }
             }
 
