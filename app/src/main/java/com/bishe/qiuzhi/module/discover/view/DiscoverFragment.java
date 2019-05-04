@@ -1,4 +1,4 @@
-package com.bishe.qiuzhi.module.index.view;
+package com.bishe.qiuzhi.module.discover.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

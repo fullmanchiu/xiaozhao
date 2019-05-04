@@ -4,6 +4,7 @@ package com.bishe.qiuzhi.net;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
+import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 
 import java.util.List;
@@ -32,4 +33,13 @@ public interface ApiService {
 
     @GET("api/Position/getPosition")
     Call<Response<PositionDetailModel>> getPositionDetail(@Query("position_id") int id);
+
+    @GET("api/Resume/getResume")
+    Call<Response<ResumeModel>> getResume(@Query("user_id") int uid, @Query("token") String token);
+
+    @GET("api/Resume/addResume")
+    Call<Response> postResume(@Query("user_id") int uid, @Query("content") String resume, @Query("token") String token);
+
+    @GET("api/Position/getPositionList")
+    Call<Response<List<PositionBean>>> getPositionByCompanyId(@Query("company_id") int companyId);
 }

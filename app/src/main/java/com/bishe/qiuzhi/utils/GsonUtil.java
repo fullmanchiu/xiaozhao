@@ -3,6 +3,7 @@ package com.bishe.qiuzhi.utils;
 import android.content.Context;
 import android.content.res.AssetManager;
 
+import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

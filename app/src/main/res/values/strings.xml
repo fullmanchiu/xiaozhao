@@ -41,4 +41,9 @@
     <string name="text_time_months_ago">个月前</string>
     <string name="text_time_years_ago">年前</string>
     <string name="job_description">职位描述</string>
+    <string name="apply">申请</string>
+    <string name="share_tip">在浏览器中访问此链接，下载App，找到心仪的工作吧！</string>
+    <string name="loginDialogMessage">请登陆后使用此功能</string>
+    <string name="loginDialogPositiveText">去登陆</string>
+    <string name="loginDialogNegativeText">我再逛逛</string>
 </resources>

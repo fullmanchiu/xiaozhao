@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.adapter.ViewPagerAdapter;
 import com.bishe.qiuzhi.app.BaseActivity;
+import com.bishe.qiuzhi.module.discover.view.DiscoverFragment;
 import com.bishe.qiuzhi.module.index.contract.MainContract;
 import com.bishe.qiuzhi.module.index.presenter.MainPresenterImpl;
 import com.bishe.qiuzhi.module.position.view.PositionFragment;

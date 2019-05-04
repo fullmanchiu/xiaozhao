@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.module.login.view.LoginActivity;
+import com.bishe.qiuzhi.module.resume.view.ResumeActivity;
 import com.bishe.qiuzhi.module.settings.view.SettingsActivity;
 
 import static android.app.Activity.RESULT_OK;
@@ -21,6 +23,7 @@ import static android.app.Activity.RESULT_OK;
 public class MineFragment extends Fragment {
     private TextView tvName;
     private RelativeLayout rlSettings;
+    private LinearLayout llResume;
     private final int requestCodeLogin = 100;
     private final int requestCodeSignOut = 101;
 
@@ -30,6 +33,8 @@ public class MineFragment extends Fragment {
         View view = inflater.inflate(R.layout.mine_fragment, container, false);
         tvName = view.findViewById(R.id.tv_login);
         rlSettings = view.findViewById(R.id.rl_settings);
+        llResume = view.findViewById(R.id.ll_resume);
+        llResume.setOnClickListener(v -> startActivity(new Intent(getContext(), ResumeActivity.class)));
         if (App.getInstance().isLogin()) {
             initUserData();
             tvName.setOnClickListener(null);

@@ -132,6 +132,24 @@ public class SeminarBean {
         private int weigh;
         private String create_time;
         private String update_time;
+        private String school_address;
+        private String school_content;
+
+        public String getSchool_address() {
+            return school_address;
+        }
+
+        public void setSchool_address(String school_address) {
+            this.school_address = school_address;
+        }
+
+        public String getSchool_content() {
+            return school_content;
+        }
+
+        public void setSchool_content(String school_content) {
+            this.school_content = school_content;
+        }
 
         public int getId() {
             return id;

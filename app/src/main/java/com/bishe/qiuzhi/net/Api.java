@@ -4,6 +4,7 @@ import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
+import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 
 import java.util.List;
@@ -21,7 +22,8 @@ public class Api {
     static {
         HTTP_SCHEMA = "http";
         HTTP_SCHEMA_SUFFIX = "://";
-        HOST = "xz.colafans.cn/index.php/";
+        //HOST = "xz.colafans.cn/index.php/";
+        HOST = "ql.crm-embrace.vip";
         apiService = ApiGsonBase.getGsonRetrofit(getDomain()).create(ApiService.class);
     }
 
@@ -51,5 +53,17 @@ public class Api {
 
     public static void getPositionDetail(int id, OnGsonRespListener<PositionDetailModel> listener) {
         ApiGsonBase.enqueue(apiService.getPositionDetail(id), listener);
+    }
+
+    public static void getResume(int uid, OnGsonRespListener<ResumeModel> listener) {
+        ApiGsonBase.enqueue(apiService.getResume(uid, getToken()), listener);
+    }
+
+    public static void postResume(int uid, String resume, OnGsonRespListener listener) {
+        ApiGsonBase.enqueue(apiService.postResume(uid,resume,getToken()),listener);
+    }
+
+    public static void getPositionByCompanyId(int companyId, OnGsonRespListener<PositionBean> listener) {
+        ApiGsonBase.enqueue(apiService.getPositionByCompanyId(companyId),listener);
     }
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_view"
     android:paddingLeft="12dp"
     android:paddingTop="8dp"
     android:paddingRight="12dp"
@@ -12,28 +13,40 @@
         android:id="@+id/iv_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginStart="24dp"
         android:clickable="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_bottom_view_share" />
+        android:src="@drawable/ic_bottom_view_share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="36dp"
         android:clickable="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_bottom_view_fav" />
+        android:src="@drawable/ic_bottom_view_fav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_share"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="12dp"
-        android:layout_weight="1"
         android:background="@drawable/bg_bottom_view_text"
-        android:gravity="center" />
-</LinearLayout>
+        android:gravity="center"
+        android:paddingLeft="106dp"
+        android:paddingTop="12dp"
+        android:paddingRight="106dp"
+        android:paddingBottom="12dp"
+        android:text="@string/apply"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
