@@ -28,7 +28,7 @@
         android:layout_marginStart="36dp"
         android:clickable="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_bottom_view_fav"
+        android:src="@drawable/ic_bottom_view_fav_selecter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_share"
         app:layout_constraintTop_toTopOf="parent" />

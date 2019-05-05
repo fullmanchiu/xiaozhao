@@ -31,6 +31,10 @@ public class Api {
         return App.getInstance().getUserData().getToken();
     }
 
+    private static int getUserId() {
+        return App.getInstance().getUserData().getUser_id();
+    }
+
     public static void getPositionData(OnGsonRespListener<List<PositionBean>> listener) {
         ApiGsonBase.enqueue(apiService.getJobs(), listener);
     }
@@ -60,10 +64,20 @@ public class Api {
     }
 
     public static void postResume(int uid, String resume, OnGsonRespListener listener) {
-        ApiGsonBase.enqueue(apiService.postResume(uid,resume,getToken()),listener);
+        ApiGsonBase.enqueue(apiService.postResume(uid, resume, getToken()), listener);
     }
 
     public static void getPositionByCompanyId(int companyId, OnGsonRespListener<PositionBean> listener) {
-        ApiGsonBase.enqueue(apiService.getPositionByCompanyId(companyId),listener);
+        ApiGsonBase.enqueue(apiService.getPositionByCompanyId(companyId), listener);
     }
+
+    public static void favPosition(int id, OnGsonRespListener listener) {
+        ApiGsonBase.enqueue(apiService.favPostion(id, App.getInstance().getUserData().getUser_id(), getToken()), listener);
+    }
+
+    public static void unFavPosition(int id, OnGsonRespListener listener) {
+        ApiGsonBase.enqueue(apiService.unFavPosition(id, getUserId(), getToken()), listener);
+    }
+
+
 }

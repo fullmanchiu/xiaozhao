@@ -42,4 +42,10 @@ public interface ApiService {
 
     @GET("api/Position/getPositionList")
     Call<Response<List<PositionBean>>> getPositionByCompanyId(@Query("company_id") int companyId);
+
+    @GET("api/Positioncollect/addPosition")
+    Call<Response> favPostion(@Query("position_id") int id, @Query("user_id") int user_id, @Query("token") String token);
+
+    @GET("api/Positioncollect/delPosition")
+    Call<Response> unFavPosition(@Query("position_id") int id, @Query("user_id") int userId, @Query("token") String token);
 }

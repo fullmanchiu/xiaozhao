@@ -11,9 +11,17 @@ public interface PositionDetailContract {
 
     interface View extends BaseView {
         OnGsonRespListener<PositionDetailModel> onGetPositionDetail();
+
+        OnGsonRespListener onFavResult();
+
+        OnGsonRespListener onUnFavResult();
     }
 
     interface Presenter extends BasePresenter<View> {
         void getPositionDetail(int id);
+
+        void FavPosition(int id);
+
+        void UnFavPosition(int id);
     }
 }

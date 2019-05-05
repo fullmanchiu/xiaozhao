@@ -1,7 +1,5 @@
 package com.bishe.qiuzhi.module.position.view;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
@@ -14,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.app.App;
@@ -90,6 +89,11 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
                     showLoginDialog();
                 } else {
                     //TODO fav
+                    if (bottomView.getFavStatus()) {
+                        mPresenter.UnFavPosition(id);
+                    } else {
+                        mPresenter.FavPosition(id);
+                    }
                     Log.d("aaa", "Fav click");
                 }
             }
@@ -102,6 +106,7 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
                 } else {
                     //TODO text
                     Log.d("aaa", "text click");
+
                 }
             }
         });
@@ -164,6 +169,38 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
             @Override
             public void onFail(String error) {
                 progressBar.setVisibility(View.GONE);
+            }
+        };
+    }
+
+    @Override
+    public OnGsonRespListener onFavResult() {
+        return new OnGsonRespListener() {
+            @Override
+            public void onSuccess(Object data) {
+                bottomView.setFavStatus(true);
+                Toast.makeText(mContext, "收藏成功", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(mContext, "收藏失败", Toast.LENGTH_LONG).show();
+            }
+        };
+    }
+
+    @Override
+    public OnGsonRespListener onUnFavResult() {
+        return new OnGsonRespListener() {
+            @Override
+            public void onSuccess(Object data) {
+                bottomView.setFavStatus(false);
+                Toast.makeText(mContext, "取消收藏成功", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(mContext, "取消收藏失败", Toast.LENGTH_LONG).show();
             }
         };
     }

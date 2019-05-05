@@ -17,6 +17,7 @@ public class BottomView extends ConstraintLayout {
     private ImageView ivShare, ivFav;
     private TextView textView;
     private View view;
+    private boolean isFav, isApply;
     private LayoutInflater mInflater;
     private OnShareButtonClickListener onShareButtonClickListener;
     private OnFavButtonClickListener onFavButtonClickListener;
@@ -32,6 +33,15 @@ public class BottomView extends ConstraintLayout {
 
     public void setOnTextButtonClickListener(OnTextButtonClickListener onTextButtonClickListener) {
         this.onTextButtonClickListener = onTextButtonClickListener;
+    }
+
+    public void setFavStatus(boolean status) {
+        isFav = status;
+        ivFav.setSelected(status);
+    }
+
+    public boolean getFavStatus() {
+        return isFav;
     }
 
     public interface OnShareButtonClickListener {

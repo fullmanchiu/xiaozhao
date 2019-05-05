@@ -1,5 +1,6 @@
 package com.bishe.qiuzhi.module.position.presenter;
 
+import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.module.position.contract.PositionDetailContract;
 import com.bishe.qiuzhi.net.Api;
 
@@ -21,5 +22,15 @@ public class PositionDetailPresenter implements PositionDetailContract.Presenter
     @Override
     public void getPositionDetail(int id) {
         Api.getPositionDetail(id, mView.onGetPositionDetail());
+    }
+
+    @Override
+    public void FavPosition(int id) {
+        Api.favPosition(id, mView.onFavResult());
+    }
+
+    @Override
+    public void UnFavPosition(int id) {
+        Api.unFavPosition(id,mView.onUnFavResult());
     }
 }
