@@ -12,10 +12,12 @@ import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.bishe.qiuzhi.module.resume.presenter.ResumePresenter;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
 import com.bishe.qiuzhi.utils.GsonUtil;
+import com.bishe.qiuzhi.wedgit.TitleBar;
 import com.google.gson.Gson;
 
 public class ResumeActivity extends BaseActivity<ResumePresenter> implements ResumeContract.View {
     private TextView tvName, tvInfo, tvTel, tvEmail, tvSalary, tvLocation, tvIndustry;
+    private TitleBar titleBar;
 
     @Override
     protected int getLayout() {
@@ -24,6 +26,7 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
 
     @Override
     protected void initView() {
+        titleBar = findViewById(R.id.titleBar);
         tvName = findViewById(R.id.tv_nick_name);
         tvInfo = findViewById(R.id.tv_info);
         tvTel = findViewById(R.id.tv_tel);
@@ -36,6 +39,7 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
     @Override
     protected void initEventAndData() {
         mPresenter.getResume();
+        titleBar.setOnBackClickListener(() -> onBackPressed());
 //        mPresenter.postResume(new Gson().toJson(
 //                new ResumeModel(App.getInstance().getUserData().getUser_id() + "",
 //                        new ResumeModel.MyInfoBean("邱亮", "男", "1992-05-28",
