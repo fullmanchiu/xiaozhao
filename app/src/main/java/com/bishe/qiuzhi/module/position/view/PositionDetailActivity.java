@@ -6,7 +6,6 @@ import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -40,7 +39,7 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
     private ScrollView scrollView;
     private int id;
     private int companyId;
-    private String companyDescribe;
+    private String companyDescribe, companyName, companyLogo;
     private BottomView bottomView;
 
     @Override
@@ -74,6 +73,8 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
             Intent intent = new Intent(PositionDetailActivity.this, CompanyActivity.class);
             intent.putExtra(Constants.EXTRA_COMPANY_ID, companyId);
             intent.putExtra(Constants.EXTRA_COMPANY_DESCRIBE, companyDescribe);
+            intent.putExtra(Constants.EXTRA_COMPANY_NAME, companyName);
+            intent.putExtra(Constants.EXTRA_COMPANY_LOGO, companyLogo);
             startActivity(intent);
         });
         bottomView.setOnShareButtonClickListener(() -> {
@@ -82,31 +83,26 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
             intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_tip) + Constants.APP_DOWNLOAD_URL);
             startActivity(Intent.createChooser(intent, getString(R.string.share)));
         });
-        bottomView.setOnFavButtonClickListener(new BottomView.OnFavButtonClickListener() {
-            @Override
-            public void onClick() {
-                if (!App.getInstance().isLogin()) {
-                    showLoginDialog();
+        bottomView.setOnFavButtonClickListener(() -> {
+            if (!App.getInstance().isLogin()) {
+                showLoginDialog();
+            } else {
+                //TODO fav
+                if (bottomView.getFavStatus()) {
+                    mPresenter.UnFavPosition(id);
                 } else {
-                    //TODO fav
-                    if (bottomView.getFavStatus()) {
-                        mPresenter.UnFavPosition(id);
-                    } else {
-                        mPresenter.FavPosition(id);
-                    }
-                    Log.d("aaa", "Fav click");
+                    mPresenter.FavPosition(id);
                 }
             }
         });
-        bottomView.setOnTextButtonClickListener(new BottomView.OnTextButtonClickListener() {
-            @Override
-            public void onClick() {
-                if (!App.getInstance().isLogin()) {
-                    showLoginDialog();
+        bottomView.setOnTextButtonClickListener(() -> {
+            if (!App.getInstance().isLogin()) {
+                showLoginDialog();
+            } else {
+                if (bottomView.getApplyStatus()) {
+                    Toast.makeText(mContext, R.string.resueSendAlrealdy, Toast.LENGTH_SHORT).show();
                 } else {
-                    //TODO text
-                    Log.d("aaa", "text click");
-
+                    mPresenter.sendResume(id);
                 }
             }
         });
@@ -152,17 +148,21 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
                 if (data != null) {
                     progressBar.setVisibility(View.GONE);
                     constraintLayout.setVisibility(View.VISIBLE);
+                    companyId = data.getCompany().getId();
+                    companyDescribe = data.getCompany().getDescribe();
+                    companyName = data.getCompany().getName();
+                    companyLogo = data.getCompany().getImage();
                     tvPositionName.setText(data.getTitle());
                     SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
                     tvDate.setText(sdf.format(new Timestamp(data.getPublish_time())));
                     tvNum.setText("招" + data.getNum() + "人");
                     tvLocation.setText(data.getLocation());
-                    Glide.with(mContext).load(Constants.DOMAIN + data.getCompany().getImage()).into(ivCompanyLogo);
-                    tvCompanyName.setText(data.getCompany().getName());
+                    Glide.with(mContext).load(Constants.DOMAIN + companyLogo).into(ivCompanyLogo);
+                    tvCompanyName.setText(companyName);
                     tvCompanyType.setText(data.getCompany().getCompany_type());
                     tvJobDecription.setText(Html.fromHtml(data.getContent()));
-                    companyId = data.getCompany().getId();
-                    companyDescribe = data.getCompany().getDescribe();
+                    bottomView.setFavStatus(data.getIs_fav() == 0 ? false : true);
+                    bottomView.setApplyStatus(data.getIs_send() == 0 ? false : true);
                 }
             }
 
@@ -201,6 +201,23 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
             @Override
             public void onFail(String error) {
                 Toast.makeText(mContext, "取消收藏失败", Toast.LENGTH_LONG).show();
+            }
+        };
+    }
+
+    @Override
+    public OnGsonRespListener onSendResult() {
+        return new OnGsonRespListener() {
+            @Override
+            public void onSuccess(Object data) {
+                bottomView.setApplyStatus(true);
+                Toast.makeText(mContext, "简历投递成功", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFail(String error) {
+                bottomView.setApplyStatus(false);
+                Toast.makeText(mContext, "简历投递失败", Toast.LENGTH_LONG).show();
             }
         };
     }

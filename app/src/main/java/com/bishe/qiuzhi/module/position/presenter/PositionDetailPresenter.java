@@ -1,10 +1,7 @@
 package com.bishe.qiuzhi.module.position.presenter;
 
-import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.module.position.contract.PositionDetailContract;
 import com.bishe.qiuzhi.net.Api;
-
-import java.net.IDN;
 
 public class PositionDetailPresenter implements PositionDetailContract.Presenter {
     private PositionDetailContract.View mView;
@@ -31,6 +28,11 @@ public class PositionDetailPresenter implements PositionDetailContract.Presenter
 
     @Override
     public void UnFavPosition(int id) {
-        Api.unFavPosition(id,mView.onUnFavResult());
+        Api.unFavPosition(id, mView.onUnFavResult());
+    }
+
+    @Override
+    public void sendResume(int id) {
+        Api.sendResume(id, mView.onSendResult());
     }
 }

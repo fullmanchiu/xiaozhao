@@ -15,6 +15,8 @@ public interface PositionDetailContract {
         OnGsonRespListener onFavResult();
 
         OnGsonRespListener onUnFavResult();
+
+        OnGsonRespListener onSendResult();
     }
 
     interface Presenter extends BasePresenter<View> {
@@ -23,5 +25,7 @@ public interface PositionDetailContract {
         void FavPosition(int id);
 
         void UnFavPosition(int id);
+
+        void sendResume(int id);
     }
 }

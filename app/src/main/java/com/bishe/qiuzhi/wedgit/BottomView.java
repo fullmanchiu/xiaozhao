@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
@@ -42,6 +43,15 @@ public class BottomView extends ConstraintLayout {
 
     public boolean getFavStatus() {
         return isFav;
+    }
+
+    public void setApplyStatus(boolean status) {
+        isApply = status;
+        textView.setText(status ? R.string.resumeApplied : R.string.resumeApply);
+    }
+
+    public boolean getApplyStatus() {
+        return isApply;
     }
 
     public interface OnShareButtonClickListener {

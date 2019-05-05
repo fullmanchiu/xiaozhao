@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.net;
 
 
+import com.bishe.qiuzhi.module.apply.model.ApplyModel;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
@@ -34,6 +35,9 @@ public interface ApiService {
     @GET("api/Position/getPosition")
     Call<Response<PositionDetailModel>> getPositionDetail(@Query("position_id") int id);
 
+    @GET("api/Position/getPosition")
+    Call<Response<PositionDetailModel>> getPositionDetailWithToken(@Query("position_id") int id, @Query("token") String token);
+
     @GET("api/Resume/getResume")
     Call<Response<ResumeModel>> getResume(@Query("user_id") int uid, @Query("token") String token);
 
@@ -48,4 +52,16 @@ public interface ApiService {
 
     @GET("api/Positioncollect/delPosition")
     Call<Response> unFavPosition(@Query("position_id") int id, @Query("user_id") int userId, @Query("token") String token);
+
+    @GET("api/Positioncollect/getPositionList")
+    Call<Response<List<PositionBean>>> getFavPositionList(@Query("user_id") int userId, @Query("token") String token);
+
+    @GET("api/SeminarCollect/getSeminarList")
+    Call<Response<List<SeminarBean>>> getFavSeminarList(@Query("user_id") int userId, @Query("token") String token);
+
+    @GET("api/Resumesend/addResume")
+    Call<Response> sendResume(@Query("position_id") int id, @Query("token") String token);
+
+    @GET("api/Resumesend/getResumeList")
+    Call<Response<List<ApplyModel>>> getApplyList(@Query("token") String token);
 }

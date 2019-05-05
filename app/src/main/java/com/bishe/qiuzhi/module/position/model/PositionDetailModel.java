@@ -37,6 +37,24 @@ public class PositionDetailModel implements PositionDetailContract.Model {
     private String create_time;
     private String update_time;
     private CompanyBean company;
+    private int is_send;
+    private int is_fav;
+
+    public int getIs_send() {
+        return is_send;
+    }
+
+    public void setIs_send(int is_send) {
+        this.is_send = is_send;
+    }
+
+    public int getIs_fav() {
+        return is_fav;
+    }
+
+    public void setIs_fav(int is_fav) {
+        this.is_fav = is_fav;
+    }
 
     public int getId() {
         return id;
