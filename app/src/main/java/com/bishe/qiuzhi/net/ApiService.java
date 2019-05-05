@@ -2,11 +2,13 @@ package com.bishe.qiuzhi.net;
 
 
 import com.bishe.qiuzhi.module.apply.model.ApplyModel;
+import com.bishe.qiuzhi.module.fav.model.FavModel;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
 import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
+import com.bishe.qiuzhi.module.seminar.model.SeminarDetailModel;
 
 import java.util.List;
 
@@ -57,11 +59,23 @@ public interface ApiService {
     Call<Response<List<PositionBean>>> getFavPositionList(@Query("user_id") int userId, @Query("token") String token);
 
     @GET("api/SeminarCollect/getSeminarList")
-    Call<Response<List<SeminarBean>>> getFavSeminarList(@Query("user_id") int userId, @Query("token") String token);
+    Call<Response<List<FavModel.FavSeminarModel>>> getFavSeminarList(@Query("user_id") int userId, @Query("token") String token);
 
     @GET("api/Resumesend/addResume")
     Call<Response> sendResume(@Query("position_id") int id, @Query("token") String token);
 
     @GET("api/Resumesend/getResumeList")
     Call<Response<List<ApplyModel>>> getApplyList(@Query("token") String token);
+
+    @GET("api/Seminar/getSeminar")
+    Call<Response<SeminarDetailModel>> getSeminarDetail(@Query("seminar_id") int id);
+
+    @GET("api/Seminar/getSeminar")
+    Call<Response<SeminarDetailModel>> getSeminarDetailWithToken(@Query("seminar_id") int id, @Query("token") String token);
+
+    @GET("api/SeminarCollect/delSeminar")
+    Call<Response> unFavSeminar(@Query("seminar_id") int id, @Query("user_id") int user_id, @Query("token") String token);
+
+    @GET("api/SeminarCollect/addSeminar")
+    Call<Response> favSeminar(@Query("seminar_id") int id, @Query("user_id") int user_id, @Query("token") String token);
 }

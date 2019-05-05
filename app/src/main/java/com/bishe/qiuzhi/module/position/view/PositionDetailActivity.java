@@ -87,7 +87,6 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
             if (!App.getInstance().isLogin()) {
                 showLoginDialog();
             } else {
-                //TODO fav
                 if (bottomView.getFavStatus()) {
                     mPresenter.UnFavPosition(id);
                 } else {

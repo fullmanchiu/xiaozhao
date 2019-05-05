@@ -1,9 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".module.resume.view.ResumeActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.bishe.qiuzhi.wedgit.TitleBar
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/resume" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tv_nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_info"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/tv_nick_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_nick_name" />
+
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_info"
+                app:layout_constraintLeft_toRightOf="@id/iv_info"
+                app:layout_constraintTop_toTopOf="@id/iv_info" />
+
+            <ImageView
+                android:id="@+id/iv_tel"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/iv_info"
+                app:layout_constraintTop_toBottomOf="@id/iv_info" />
+
+            <TextView
+                android:id="@+id/tv_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_tel"
+                app:layout_constraintLeft_toRightOf="@id/iv_tel"
+                app:layout_constraintTop_toTopOf="@id/iv_tel" />
+
+            <ImageView
+                android:id="@+id/iv_email"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/iv_tel"
+                app:layout_constraintTop_toBottomOf="@id/iv_tel" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_email"
+                app:layout_constraintLeft_toRightOf="@id/iv_email"
+                app:layout_constraintTop_toTopOf="@id/iv_email" />
+
+            <TextView
+                android:id="@+id/tv_target_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:drawableStart="@drawable/shape_job_description"
+                android:drawablePadding="20dp"
+                android:gravity="center"
+                android:text="@string/job_description"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_email" />
+
+            <ImageView
+                android:id="@+id/iv_salary"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/tv_target_tag"
+                app:layout_constraintTop_toBottomOf="@id/tv_target_tag" />
+
+            <TextView
+                android:id="@+id/tv_salary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_salary"
+                app:layout_constraintLeft_toRightOf="@id/iv_salary"
+                app:layout_constraintTop_toTopOf="@id/iv_salary" />
+
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/iv_salary"
+                app:layout_constraintTop_toBottomOf="@id/iv_salary" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_location"
+                app:layout_constraintLeft_toRightOf="@id/iv_location"
+                app:layout_constraintTop_toTopOf="@id/iv_location" />
+
+            <ImageView
+                android:id="@+id/iv_industry"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/iv_location"
+                app:layout_constraintTop_toBottomOf="@id/iv_location" />
+
+            <TextView
+                android:id="@+id/tv_industry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_industry"
+                app:layout_constraintLeft_toRightOf="@id/iv_industry"
+                app:layout_constraintTop_toTopOf="@id/iv_industry" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

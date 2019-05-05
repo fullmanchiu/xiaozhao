@@ -15,10 +15,10 @@ import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.fav.adapter.FavPositionAdapter;
 import com.bishe.qiuzhi.module.fav.adapter.FavSeminarAdapter;
 import com.bishe.qiuzhi.module.fav.contract.FavContract;
+import com.bishe.qiuzhi.module.fav.model.FavModel;
 import com.bishe.qiuzhi.module.fav.presenter.FavPresenter;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.view.PositionDetailActivity;
-import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
 import com.bishe.qiuzhi.wedgit.TitleBar;
 
@@ -115,10 +115,10 @@ public class FavActivity extends BaseActivity<FavPresenter> implements FavContra
     }
 
     @Override
-    public OnGsonRespListener<List<SeminarBean>> onGetFavSeminarList() {
-        return new OnGsonRespListener<List<SeminarBean>>() {
+    public OnGsonRespListener<List<FavModel.FavSeminarModel>> onGetFavSeminarList() {
+        return new OnGsonRespListener<List<FavModel.FavSeminarModel>>() {
             @Override
-            public void onSuccess(List<SeminarBean> data) {
+            public void onSuccess(List<FavModel.FavSeminarModel> data) {
                 favSeminarAdapter.setData(data);
                 progressBar.setVisibility(View.GONE);
                 rvSeminar.setVisibility(View.VISIBLE);

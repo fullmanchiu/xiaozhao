@@ -1,5 +1,6 @@
 package com.bishe.qiuzhi.module.seminar.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
+import com.bishe.qiuzhi.app.Constants;
+import com.bishe.qiuzhi.module.position.view.PositionDetailActivity;
 import com.bishe.qiuzhi.module.seminar.adapter.SeminarAdapter;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 import com.bishe.qiuzhi.net.Api;
@@ -32,6 +35,11 @@ public class SeminarFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mSeminarAdapter = new SeminarAdapter(getContext());
+        mSeminarAdapter.setOnItemCLickListener((position, seminarBean) -> {
+            Intent intent = new Intent(getActivity(), SeminarDetailActivity.class);
+            intent.putExtra(Constants.EXTRA_SEMINAR_ID, seminarBean.getId());
+            startActivity(intent);
+        });
         recyclerView.setAdapter(mSeminarAdapter);
         return view;
     }

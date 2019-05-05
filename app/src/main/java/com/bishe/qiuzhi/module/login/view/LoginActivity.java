@@ -53,7 +53,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         return new OnGsonRespListener<LoginModel>() {
             @Override
             public void onSuccess(LoginModel data) {
-                //TODO save userdata
                 App.getInstance().setUserDate(data.getUserinfo());
                 setResult(RESULT_OK);
                 finish();

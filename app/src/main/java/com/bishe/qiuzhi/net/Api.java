@@ -2,11 +2,13 @@ package com.bishe.qiuzhi.net;
 
 import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.module.apply.model.ApplyModel;
+import com.bishe.qiuzhi.module.fav.model.FavModel;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
 import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
+import com.bishe.qiuzhi.module.seminar.model.SeminarDetailModel;
 
 import java.util.List;
 
@@ -88,7 +90,7 @@ public class Api {
         ApiGsonBase.enqueue(apiService.getFavPositionList(getUserId(), getToken()), listener);
     }
 
-    public static void getFavSeminarList(OnGsonRespListener<List<SeminarBean>> listener) {
+    public static void getFavSeminarList(OnGsonRespListener<List<FavModel.FavSeminarModel>> listener) {
         ApiGsonBase.enqueue(apiService.getFavSeminarList(getUserId(), getToken()), listener);
     }
 
@@ -98,5 +100,21 @@ public class Api {
 
     public static void getApplyList(OnGsonRespListener<List<ApplyModel>> listener) {
         ApiGsonBase.enqueue(apiService.getApplyList(getToken()), listener);
+    }
+
+    public static void getSeminarDetail(int id, OnGsonRespListener<SeminarDetailModel> listener) {
+        if (App.getInstance().isLogin()) {
+            ApiGsonBase.enqueue(apiService.getSeminarDetailWithToken(id, getToken()), listener);
+        } else {
+            ApiGsonBase.enqueue(apiService.getSeminarDetail(id), listener);
+        }
+    }
+
+    public static void unFavSeminar(int id, OnGsonRespListener listener) {
+        ApiGsonBase.enqueue(apiService.unFavSeminar(id, getUserId(), getToken()), listener);
+    }
+
+    public static void favSeminar(int id, OnGsonRespListener listener) {
+        ApiGsonBase.enqueue(apiService.favSeminar(id, getUserId(), getToken()), listener);
     }
 }

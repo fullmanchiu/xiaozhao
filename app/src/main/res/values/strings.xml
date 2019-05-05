@@ -55,4 +55,6 @@
     <string name="mine_apply">我的投递</string>
     <string name="companyDescribe">公司描述</string>
     <string name="companyPosition">再招职位</string>
+    <string name="name">姓名</string>
+    <string name="position_target">求职目标</string>
 </resources>

@@ -14,6 +14,8 @@ import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.app.BaseActivity;
 import com.bishe.qiuzhi.app.Constants;
+import com.bishe.qiuzhi.module.position.adapter.PositionAdapter;
+import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 import com.bishe.qiuzhi.utils.DateUtil;
 import com.bumptech.glide.Glide;
@@ -24,6 +26,16 @@ import java.util.List;
 public class SeminarAdapter extends RecyclerView.Adapter<SeminarAdapter.SeminarViewHolder> {
     private Context mContext;
     private List<SeminarBean> seminarBeans;
+
+    public interface OnItemCLickListener {
+        void onClick(int position, SeminarBean positionBean);
+    }
+
+    private OnItemCLickListener onItemCLickListener;
+
+    public void setOnItemCLickListener(OnItemCLickListener lickListener) {
+        this.onItemCLickListener = lickListener;
+    }
 
     public SeminarAdapter(Context context) {
         mContext = context;
@@ -45,6 +57,9 @@ public class SeminarAdapter extends RecyclerView.Adapter<SeminarAdapter.SeminarV
         seminarViewHolder.tvDate.setText(date);
         seminarViewHolder.tvLocation.setText(seminarBean.getSchool().getName() + " · " + seminarBean.getAddress());
         Glide.with(mContext).load(Constants.DOMAIN + seminarBean.getSchool().getImage()).into(seminarViewHolder.ivLogo);
+        if (onItemCLickListener != null) {
+            seminarViewHolder.itemView.setOnClickListener(v -> onItemCLickListener.onClick(position, seminarBean));
+        }
     }
 
     @Override

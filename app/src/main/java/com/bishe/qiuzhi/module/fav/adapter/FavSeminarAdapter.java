@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.app.Constants;
+import com.bishe.qiuzhi.module.fav.model.FavModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 import com.bishe.qiuzhi.utils.DateUtil;
 import com.bumptech.glide.Glide;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class FavSeminarAdapter extends RecyclerView.Adapter<FavSeminarAdapter.SeminarViewHolder> {
     private Context mContext;
-    private List<SeminarBean> seminarBeans;
+    private List<FavModel.FavSeminarModel> seminarBeans;
 
     public FavSeminarAdapter(Context context) {
         mContext = context;
@@ -35,12 +36,11 @@ public class FavSeminarAdapter extends RecyclerView.Adapter<FavSeminarAdapter.Se
 
     @Override
     public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int position) {
-        final SeminarBean seminarBean = seminarBeans.get(position);
+        final FavModel.FavSeminarModel seminarBean = seminarBeans.get(position);
         seminarViewHolder.tvTitle.setText(seminarBean.getName());
         String date = DateUtil.simpleFormat("MM-dd    hh:mm", seminarBean.getStart_time()) + "-" + DateUtil.simpleFormat("hh:mm", seminarBean.getEnd_time());
         seminarViewHolder.tvDate.setText(date);
-        seminarViewHolder.tvLocation.setText(seminarBean.getSchool().getName() + " · " + seminarBean.getAddress());
-        Glide.with(mContext).load(Constants.DOMAIN + seminarBean.getSchool().getImage()).into(seminarViewHolder.ivLogo);
+        seminarViewHolder.tvLocation.setText(seminarBean.getAddress());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class FavSeminarAdapter extends RecyclerView.Adapter<FavSeminarAdapter.Se
         return 0;
     }
 
-    public void setData(List<SeminarBean> arraySeminarBeanFromData) {
+    public void setData(List<FavModel.FavSeminarModel> arraySeminarBeanFromData) {
         this.seminarBeans = arraySeminarBeanFromData;
         notifyDataSetChanged();
     }
@@ -64,7 +64,6 @@ public class FavSeminarAdapter extends RecyclerView.Adapter<FavSeminarAdapter.Se
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvDate = itemView.findViewById(R.id.tv_date);
             tvLocation = itemView.findViewById(R.id.tv_location);
-            ivLogo = itemView.findViewById(R.id.iv_logo);
         }
     }
 }

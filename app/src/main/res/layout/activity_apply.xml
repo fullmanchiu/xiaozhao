@@ -8,6 +8,7 @@
     tools:context=".module.apply.view.ApplyActivity">
 
     <com.bishe.qiuzhi.wedgit.TitleBar
+        android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/mine_apply" />

@@ -8,4 +8,5 @@ public class Constants {
     public static final String APP_DOWNLOAD_URL = "https://fir.im/t7ry";
     public static final String EXTRA_COMPANY_NAME = "company_name";
     public static final String EXTRA_COMPANY_LOGO = "company_logo";
+    public static final String EXTRA_SEMINAR_ID = "seminar_id";
 }

@@ -10,38 +10,46 @@
     <com.bishe.qiuzhi.wedgit.TitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="@string/app_name" />
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_constraintTop_toBottomOf="@id/titleBar">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:visibility="gone">
 
             <TextView
-                android:id="@+id/tv_positionName"
+                android:id="@+id/tv_seminar_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextNormal"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_date"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="12dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_job_date"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_positionName" />
+                app:layout_constraintTop_toBottomOf="@id/tv_seminar_name" />
 
             <TextView
                 android:id="@+id/tv_date"
@@ -54,48 +62,66 @@
                 app:layout_constraintTop_toTopOf="@id/iv_date" />
 
             <ImageView
-                android:id="@+id/iv_num"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="36dp"
+                android:id="@+id/iv_school"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="156dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_job_num"
+                android:src="@drawable/ic_seminar_school"
                 app:layout_constraintBottom_toBottomOf="@id/iv_date"
                 app:layout_constraintLeft_toRightOf="@id/iv_date"
                 app:layout_constraintTop_toTopOf="@id/iv_date" />
 
             <TextView
-                android:id="@+id/tv_num"
+                android:id="@+id/tv_school"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:textColor="@color/colorTextNormal"
                 app:layout_constraintBottom_toBottomOf="@id/iv_date"
-                app:layout_constraintLeft_toRightOf="@id/iv_num"
+                app:layout_constraintLeft_toRightOf="@id/iv_school"
                 app:layout_constraintTop_toTopOf="@id/iv_date" />
 
             <ImageView
-                android:id="@+id/iv_location"
+                android:id="@+id/iv_address"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginStart="36dp"
+                android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_job_num"
-                app:layout_constraintBottom_toBottomOf="@id/iv_date"
-                app:layout_constraintLeft_toRightOf="@id/iv_date"
-                app:layout_constraintTop_toTopOf="@id/iv_date" />
+                android:src="@drawable/ic_job_location"
+                app:layout_constraintLeft_toLeftOf="@id/iv_date"
+                app:layout_constraintTop_toBottomOf="@id/iv_date" />
 
             <TextView
-                android:id="@+id/tv_location"
+                android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:textColor="@color/colorTextNormal"
-                app:layout_constraintBottom_toBottomOf="@id/iv_date"
-                app:layout_constraintLeft_toRightOf="@id/iv_num"
-                app:layout_constraintTop_toTopOf="@id/iv_date" />
+                app:layout_constraintLeft_toRightOf="@id/iv_address"
+                app:layout_constraintTop_toTopOf="@id/iv_address" />
 
+            <TextView
+                android:id="@+id/tv_seminar_description_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:drawableStart="@drawable/shape_job_description"
+                android:drawablePadding="20dp"
+                android:gravity="center"
+                android:text="@string/job_description"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_address" />
 
+            <TextView
+                android:id="@+id/tv_seminar_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_seminar_description_tag" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
