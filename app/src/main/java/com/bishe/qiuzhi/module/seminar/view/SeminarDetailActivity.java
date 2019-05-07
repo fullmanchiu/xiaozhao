@@ -108,10 +108,10 @@ public class SeminarDetailActivity extends BaseActivity<SeminarDetailPresenter> 
         final AlertDialog.Builder loginDialog = new AlertDialog.Builder(mContext);
         loginDialog.setMessage(R.string.loginDialogMessage)
                 .setPositiveButton(R.string.loginDialogPositiveText
-                        , (dialog, which) -> dialog.cancel())
-                .setNegativeButton(R.string.loginDialogNegativeText
                         , (dialog, which) -> startActivity(
-                                new Intent(mContext, LoginActivity.class)));
+                                new Intent(mContext, LoginActivity.class)))
+                .setNegativeButton(R.string.loginDialogNegativeText
+                        , (dialog, which) -> dialog.cancel());
         loginDialog.show();
     }
 

@@ -2,8 +2,11 @@ package com.bishe.qiuzhi.net;
 
 import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.module.apply.model.ApplyModel;
+import com.bishe.qiuzhi.module.discover.model.DiscoverModel;
 import com.bishe.qiuzhi.module.fav.model.FavModel;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
+import com.bishe.qiuzhi.module.position.model.Filter;
+import com.bishe.qiuzhi.module.position.model.Location;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
 import com.bishe.qiuzhi.module.resume.model.ResumeModel;
@@ -39,7 +42,11 @@ public class Api {
     }
 
     public static void getPositionData(OnGsonRespListener<List<PositionBean>> listener) {
-        ApiGsonBase.enqueue(apiService.getJobs(), listener);
+        ApiGsonBase.enqueue(apiService.getPositions(), listener);
+    }
+
+    public static void getPositionData(String location, int industryId, int filterCompanyTypeId, OnGsonRespListener<List<PositionBean>> listener) {
+        ApiGsonBase.enqueue(apiService.getPositions(location, industryId, filterCompanyTypeId), listener);
     }
 
     public static void getSeminarData(OnGsonRespListener<List<SeminarBean>> listener) {
@@ -116,5 +123,17 @@ public class Api {
 
     public static void favSeminar(int id, OnGsonRespListener listener) {
         ApiGsonBase.enqueue(apiService.favSeminar(id, getUserId(), getToken()), listener);
+    }
+
+    public static void getLocationList(OnGsonRespListener<List<Location>> listener) {
+        ApiGsonBase.enqueue(apiService.getLocationList(), listener);
+    }
+
+    public static void getPositionFilter(OnGsonRespListener<Filter> listener) {
+        ApiGsonBase.enqueue(apiService.getPositionFilter(), listener);
+    }
+
+    public static void getDiscoverData(OnGsonRespListener<List<DiscoverModel>> listener) {
+        ApiGsonBase.enqueue(apiService.getDiscoverData(), listener);
     }
 }

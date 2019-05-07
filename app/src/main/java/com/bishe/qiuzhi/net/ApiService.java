@@ -2,8 +2,11 @@ package com.bishe.qiuzhi.net;
 
 
 import com.bishe.qiuzhi.module.apply.model.ApplyModel;
+import com.bishe.qiuzhi.module.discover.model.DiscoverModel;
 import com.bishe.qiuzhi.module.fav.model.FavModel;
 import com.bishe.qiuzhi.module.login.model.LoginModel;
+import com.bishe.qiuzhi.module.position.model.Filter;
+import com.bishe.qiuzhi.module.position.model.Location;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
 import com.bishe.qiuzhi.module.resume.model.ResumeModel;
@@ -20,7 +23,10 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET("api/Position/getPositionList")
-    Call<Response<List<PositionBean>>> getJobs();
+    Call<Response<List<PositionBean>>> getPositions();
+
+    @GET("api/Position/getPositionList")
+    Call<Response<List<PositionBean>>> getPositions(@Query("location") String location, @Query("industry_id") int industry_id, @Query("company_type_id") int filterCompanyTypeId);
 
     @GET("api/Seminar/getSeminarList")
     Call<Response<List<SeminarBean>>> getSeminars();
@@ -78,4 +84,13 @@ public interface ApiService {
 
     @GET("api/SeminarCollect/addSeminar")
     Call<Response> favSeminar(@Query("seminar_id") int id, @Query("user_id") int user_id, @Query("token") String token);
+
+    @GET("api/School/getAreaList")
+    Call<Response<List<Location>>> getLocationList();
+
+    @GET("api/Position/getPositionSearchList")
+    Call<Response<Filter>> getPositionFilter();
+
+    @GET("api/discover/getlist")
+    Call<Response<List<DiscoverModel>>> getDiscoverData();
 }

@@ -10,29 +10,93 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.position.adapter.PositionAdapter;
+import com.bishe.qiuzhi.module.position.model.Filter;
+import com.bishe.qiuzhi.module.position.model.Location;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
 import com.bishe.qiuzhi.net.Api;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PositionFragment extends Fragment {
     private RecyclerView recyclerView;
     private PositionAdapter mPositionAdapter;
     private ProgressBar progressBar;
+    private Spinner spinnerLocation, spinnerIndustry, spinnerCompanyType;
+    String filterLocation;
+    int filterIndustryId, filterCompanyTypeId;
+    private ArrayAdapter<String> locationAdapter, industryAdapter, companyTypeAdapter;
+    private List<String> locationList, industryList, companyTypeList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.job_fragment, container, false);
+        View view = inflater.inflate(R.layout.positon_fragment, container, false);
         progressBar = view.findViewById(R.id.pb);
         recyclerView = view.findViewById(R.id.rv_job);
+
+        spinnerCompanyType = view.findViewById(R.id.spinner_more);
+        companyTypeList = new ArrayList<>();
+        companyTypeList.add("不限");
+        companyTypeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, companyTypeList);
+        spinnerCompanyType.setAdapter(companyTypeAdapter);
+        spinnerCompanyType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filterCompanyTypeId = position;
+                refreshRv();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinnerIndustry = view.findViewById(R.id.spinner_industry);
+        industryList = new ArrayList<>();
+        industryList.add("不限");
+        industryAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, industryList);
+        spinnerIndustry.setAdapter(industryAdapter);
+        spinnerIndustry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filterIndustryId = position;
+                refreshRv();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinnerLocation = view.findViewById(R.id.spinner_location);
+        locationList = new ArrayList<>();
+        locationList.add("全部");
+        locationAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, locationList);
+        spinnerLocation.setAdapter(locationAdapter);
+        spinnerLocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filterLocation = parent.getItemAtPosition(position).toString();
+                refreshRv();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mPositionAdapter = new PositionAdapter(getContext());
@@ -45,6 +109,28 @@ public class PositionFragment extends Fragment {
         return view;
     }
 
+    private void refreshRv() {
+        if (filterLocation.equals("全部")) {
+            filterLocation = "";
+        }
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        Api.getPositionData(filterLocation, filterIndustryId, filterCompanyTypeId, new OnGsonRespListener<List<PositionBean>>() {
+            @Override
+            public void onSuccess(List<PositionBean> data) {
+                mPositionAdapter.setData(data);
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(getContext(), "未查询到相关职位", Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+
 
     @Override
     public void onResume() {
@@ -53,6 +139,43 @@ public class PositionFragment extends Fragment {
     }
 
     private void initData() {
+        Api.getLocationList(new OnGsonRespListener<List<Location>>() {
+
+            @Override
+            public void onSuccess(List<Location> data) {
+                locationList.clear();
+                locationList.add("全部");
+                for (Location location : data) {
+                    locationList.add(location.getSchool_address());
+                }
+                locationAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFail(String error) {
+
+            }
+        });
+        Api.getPositionFilter(new OnGsonRespListener<Filter>() {
+            @Override
+            public void onSuccess(Filter data) {
+                industryList.clear();
+                for (Filter.IndustryBean industryBean : data.getIndustry()) {
+                    industryList.add(industryBean.getIndustry_name());
+                }
+                industryAdapter.notifyDataSetChanged();
+                companyTypeList.clear();
+                for (Filter.CompanyTypyBean companyTypyBean : data.getCompany_typy()) {
+                    companyTypeList.add(companyTypyBean.getCompany_type_name());
+                }
+                companyTypeAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFail(String error) {
+
+            }
+        });
         Api.getPositionData(new OnGsonRespListener<List<PositionBean>>() {
             @Override
             public void onSuccess(List<PositionBean> data) {

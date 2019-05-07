@@ -6,19 +6,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
-import com.bishe.qiuzhi.app.Constants;
-import com.bishe.qiuzhi.module.position.model.PositionBean;
-import com.bumptech.glide.Glide;
+import com.bishe.qiuzhi.module.discover.model.DiscoverModel;
 
 import java.util.List;
 
 public class DiscoverAdapter extends RecyclerView.Adapter<DiscoverAdapter.DiscoverViewHolder> {
     private Context mContext;
-    private List<PositionBean> positionBeans;
+    private List<DiscoverModel> discoverModels;
+
+    public interface OnItemCLickListener {
+        void onClick(int position, DiscoverModel positionBean);
+    }
+
+    private OnItemCLickListener onItemCLickListener;
+
+    public void setOnItemCLickListener(OnItemCLickListener lickListener) {
+        this.onItemCLickListener = lickListener;
+    }
 
     public DiscoverAdapter(Context ctx) {
         mContext = ctx;
@@ -34,40 +41,34 @@ public class DiscoverAdapter extends RecyclerView.Adapter<DiscoverAdapter.Discov
 
     @Override
     public void onBindViewHolder(@NonNull DiscoverViewHolder discoverViewHolder, int position) {
-        final PositionBean positionBean = positionBeans.get(position);
-        //Glide.with(mContext).load(Constants.DOMAIN + positionBean.getCompany().getImage()).into(jobViewHolder.ivLogo);
-        //Glide.with(App.getInstance()).load(positionBean.getCompany().getImage()).into(jobViewHolder.ivLogo);
-//        if (onItemCLickListener != null) {
-//            jobViewHolder.itemView.setOnClickListener(v -> onItemCLickListener.onClick(position, positionBean));
-//        }
+        final DiscoverModel discoverModel = discoverModels.get(position);
+        discoverViewHolder.tvTitle.setText(discoverModel.getTitle());
+        discoverViewHolder.tvSource.setText("来自: " + discoverModel.getSource());
+        if (onItemCLickListener != null) {
+            discoverViewHolder.itemView.setOnClickListener(v -> onItemCLickListener.onClick(position, discoverModel));
+        }
     }
 
 
     @Override
     public int getItemCount() {
-        if (positionBeans != null)
-            return positionBeans.size();
+        if (discoverModels != null)
+            return discoverModels.size();
         return 0;
     }
 
-    public void setData(List<PositionBean> positionBeans) {
-        this.positionBeans = positionBeans;
+    public void setData(List<DiscoverModel> discoverModels) {
+        this.discoverModels = discoverModels;
         notifyDataSetChanged();
     }
 
     class DiscoverViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvSalary, tvCompanyName, tvDate, tvLocation, tvNum;
-        ImageView ivLogo;
+        TextView tvTitle, tvSource;
 
         public DiscoverViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title);
-            tvSalary = itemView.findViewById(R.id.tv_salary);
-            tvCompanyName = itemView.findViewById(R.id.tv_companyName);
-            tvDate = itemView.findViewById(R.id.tv_date);
-            tvLocation = itemView.findViewById(R.id.tv_location);
-            tvNum = itemView.findViewById(R.id.tv_num);
-            ivLogo = itemView.findViewById(R.id.iv_logo);
+            tvSource = itemView.findViewById(R.id.tv_source);
         }
     }
 }
