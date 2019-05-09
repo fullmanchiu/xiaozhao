@@ -14,10 +14,12 @@ public interface ApplyContract {
     }
 
     interface View extends BaseView {
+        //获取到数据后的回调
         OnGsonRespListener<List<ApplyModel>> onGetAppyList();
     }
 
     interface Presenter extends BasePresenter<View> {
+        //获取已申请的数据
         void getApplyList();
     }
 }

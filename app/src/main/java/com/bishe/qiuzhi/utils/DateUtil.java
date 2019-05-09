@@ -9,6 +9,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * 日期相关工具类
+ * unix时间戳与文字的转换
+ */
 public class DateUtil {
     private static Calendar calendar;
 

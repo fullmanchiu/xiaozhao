@@ -14,10 +14,14 @@ import com.bishe.qiuzhi.module.index.presenter.MainPresenterImpl;
 import com.bishe.qiuzhi.module.position.view.PositionFragment;
 import com.bishe.qiuzhi.module.seminar.view.SeminarFragment;
 
+/**
+ * 主界面
+ * 四个fragment 通过viewpager加载
+ */
 public class MainActivity extends BaseActivity<MainPresenterImpl> implements MainContract.View, BottomNavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener {
-    private BottomNavigationView bottomNavigationView;
-    private ViewPager viewPager;
-    private MenuItem menuItem;
+    private BottomNavigationView bottomNavigationView;//底部导航栏
+    private ViewPager viewPager;//viewpager 用来管理fragment的滑动
+    private MenuItem menuItem;// 底部导航栏的单个菜单项
 
     @Override
     protected void initEventAndData() {
@@ -41,6 +45,9 @@ public class MainActivity extends BaseActivity<MainPresenterImpl> implements Mai
         setupViewPager();
     }
 
+    /**
+     * 初始化viewpager
+     */
     private void setupViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -51,11 +58,21 @@ public class MainActivity extends BaseActivity<MainPresenterImpl> implements Mai
         viewPager.setAdapter(adapter);
     }
 
+    /**
+     * 底部导航栏点击事件
+     * viewpager切换监听
+     */
     private void initListener() {
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         viewPager.addOnPageChangeListener(this);
     }
 
+    /**
+     * 底部导航栏点击时，切换viewpager
+     *
+     * @param menuItem
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
@@ -80,6 +97,11 @@ public class MainActivity extends BaseActivity<MainPresenterImpl> implements Mai
 
     }
 
+    /**
+     * viewpager切换时 更新底部导航栏状态
+     *
+     * @param position
+     */
     @Override
     public void onPageSelected(int position) {
         for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {

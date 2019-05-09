@@ -15,6 +15,9 @@ import com.bishe.qiuzhi.module.seminar.model.SeminarDetailModel;
 
 import java.util.List;
 
+/**
+ * 网络请求Api
+ */
 public class Api {
     private static final String HTTP_SCHEMA;
     private static final String HTTP_SCHEMA_SUFFIX;
@@ -29,7 +32,6 @@ public class Api {
         HTTP_SCHEMA = "http";
         HTTP_SCHEMA_SUFFIX = "://";
         HOST = "xz.colafans.cn/index.php/";
-        //HOST = "ql.crm-embrace.vip";
         apiService = ApiGsonBase.getGsonRetrofit(getDomain()).create(ApiService.class);
     }
 

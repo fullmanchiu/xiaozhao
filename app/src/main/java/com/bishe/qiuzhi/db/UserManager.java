@@ -17,6 +17,10 @@ import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_T
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_NICK_NAME;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_USER_ID;
 
+/**
+ * 用户管理类
+ * 管理当前登录用户的数据
+ */
 public class UserManager {
     private static final String CONTENT_SCHEMA;
     private static final String AUTOHORITY;

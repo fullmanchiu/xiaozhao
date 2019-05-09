@@ -20,6 +20,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
+/**
+ * 网络请求
+ */
 public interface ApiService {
 
     @GET("api/Position/getPositionList")

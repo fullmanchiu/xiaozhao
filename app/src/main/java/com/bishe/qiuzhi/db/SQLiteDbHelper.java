@@ -13,6 +13,9 @@ import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_T
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_USER_NAME;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_NAME;
 
+/**
+ * 数据库操作类
+ */
 public class SQLiteDbHelper extends SQLiteOpenHelper {
     private Context mContext;
     private static final String TAG = "SQLiteDbHelper";
@@ -48,7 +51,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "first run onCreate create tables");
-        db.execSQL(SQL_CREATE_USER_TABLE);
+        db.execSQL(SQL_CREATE_USER_TABLE);//执行建表sql语句
     }
 
     @Override

@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
 
+/**
+ * 自定义View BottomView
+ */
 public class BottomView extends ConstraintLayout {
     private Context mContext;
     private String text;
@@ -36,6 +39,11 @@ public class BottomView extends ConstraintLayout {
         this.onTextButtonClickListener = onTextButtonClickListener;
     }
 
+    /**
+     * 设置fav按钮状态
+     *
+     * @param status
+     */
     public void setFavStatus(boolean status) {
         isFav = status;
         ivFav.setSelected(status);
@@ -45,6 +53,11 @@ public class BottomView extends ConstraintLayout {
         return isFav;
     }
 
+    /**
+     * 设置apply按钮状态
+     *
+     * @param status
+     */
     public void setApplyStatus(boolean status) {
         isApply = status;
         textView.setText(status ? R.string.resumeApplied : R.string.resumeApply);
@@ -77,6 +90,7 @@ public class BottomView extends ConstraintLayout {
     public BottomView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+        //获取自定义view的相关属性
         final TypedArray typedArray = context.obtainStyledAttributes(attrs,
                 R.styleable.BottomView);
         if (typedArray != null) {
@@ -86,6 +100,9 @@ public class BottomView extends ConstraintLayout {
         initListener();
     }
 
+    /**
+     * 初始化view
+     */
     private void initView() {
         if (view == null) {
             mInflater = LayoutInflater.from(mContext);
@@ -96,6 +113,9 @@ public class BottomView extends ConstraintLayout {
         }
     }
 
+    /**
+     * 初始化监听器
+     */
     private void initListener() {
         ivShare.setOnClickListener(v -> onShareButtonClickListener.onClick());
         ivFav.setOnClickListener(v -> onFavButtonClickListener.onClick());

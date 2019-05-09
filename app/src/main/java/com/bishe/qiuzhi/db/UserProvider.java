@@ -10,6 +10,10 @@ import android.net.Uri;
 
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_NAME;
 
+/**
+ * 用户ContentProvider
+ * 暴露用户数据
+ */
 public class UserProvider extends ContentProvider {
     public static final String AUTHORITY = "com.bishe.userprovider";
     private static final int USER_CODE = 1;

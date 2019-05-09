@@ -13,6 +13,10 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+/**
+ * josn 工具类
+ * json和对象的转换
+ */
 public class GsonUtil {
     public static String getJsonStrFromFile(Context context, String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
