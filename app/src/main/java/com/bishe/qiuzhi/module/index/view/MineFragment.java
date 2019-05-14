@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ import com.bishe.qiuzhi.module.settings.view.SettingsActivity;
 import com.bumptech.glide.Glide;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.VIBRATOR_SERVICE;
 
 public class MineFragment extends Fragment {
     private TextView tvName;
@@ -47,7 +47,14 @@ public class MineFragment extends Fragment {
         llResume = view.findViewById(R.id.ll_resume);
         llFav = view.findViewById(R.id.ll_fav);
         ivAvatar = view.findViewById(R.id.iv_avatar);
-        llApply.setOnClickListener(v -> startActivity(new Intent(getContext(), ApplyActivity.class)));
+        llApply.setOnClickListener(v -> {
+            if (!App.getInstance().isLogin()) {
+                showLoginDialog();
+            } else {
+                startActivity(new Intent(getContext(), ApplyActivity.class));
+            }
+        });
+
         rlShare.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
@@ -59,8 +66,20 @@ public class MineFragment extends Fragment {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
-        llFav.setOnClickListener(v -> startActivity(new Intent(getContext(), FavActivity.class)));
-        llResume.setOnClickListener(v -> startActivity(new Intent(getContext(), ResumeActivity.class)));
+        llFav.setOnClickListener(v -> {
+            if (!App.getInstance().isLogin()) {
+                showLoginDialog();
+            } else {
+                startActivity(new Intent(getContext(), FavActivity.class));
+            }
+        });
+        llResume.setOnClickListener(v -> {
+            if (!App.getInstance().isLogin()) {
+                showLoginDialog();
+            } else {
+                startActivity(new Intent(getContext(), ResumeActivity.class));
+            }
+        });
         if (App.getInstance().isLogin()) {
             initUserData();
             tvName.setOnClickListener(null);
@@ -91,6 +110,17 @@ public class MineFragment extends Fragment {
                 break;
             default:
         }
+    }
+
+    private void showLoginDialog() {
+        final AlertDialog.Builder loginDialog = new AlertDialog.Builder(getActivity());
+        loginDialog.setMessage(R.string.loginDialogMessage)
+                .setPositiveButton(R.string.loginDialogPositiveText
+                        , (dialog, which) -> startActivity(
+                                new Intent(getActivity(), LoginActivity.class)))
+                .setNegativeButton(R.string.loginDialogNegativeText
+                        , (dialog, which) -> dialog.cancel());
+        loginDialog.show();
     }
 
     private void signOut() {
