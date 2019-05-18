@@ -38,7 +38,7 @@ public class FavSeminarAdapter extends RecyclerView.Adapter<FavSeminarAdapter.Se
     public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int position) {
         final FavModel.FavSeminarModel seminarBean = seminarBeans.get(position);
         seminarViewHolder.tvTitle.setText(seminarBean.getName());
-        String date = DateUtil.simpleFormat("MM-dd    hh:mm", seminarBean.getStart_time()) + "-" + DateUtil.simpleFormat("hh:mm", seminarBean.getEnd_time());
+        String date = DateUtil.simpleFormat("MM-dd    HH:mm", seminarBean.getStart_time()) + "-" + DateUtil.simpleFormat("HH:mm", seminarBean.getEnd_time());
         seminarViewHolder.tvDate.setText(date);
         seminarViewHolder.tvLocation.setText(seminarBean.getAddress());
     }

@@ -96,4 +96,7 @@ public interface ApiService {
 
     @GET("api/discover/getlist")
     Call<Response<List<DiscoverModel>>> getDiscoverData();
+
+    @GET("api/app/check")
+    Call<Response> checkUpdate();
 }

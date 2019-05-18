@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.bishe.qiuzhi.R;
 
@@ -32,7 +33,8 @@ public class DateUtil {
 
     public static String simpleFormat(String pattern, long timeInMillis) {
         SimpleDateFormat format = new SimpleDateFormat(pattern, Locale.getDefault());
-        return format.format(timeInMillis);
+        Log.d("aaaa", "timeInMillis:" + timeInMillis + "     " + timeInMillis * 1000);
+        return format.format(timeInMillis * 1000);
     }
 
     public static String convertTimeToFormat(Context context, long timeStamp) {

@@ -20,4 +20,9 @@ public class SettingsPresenter implements SettingsContract.Presenter {
     public void signOut() {
         Api.signOut(mView.onSignOut());
     }
+
+    @Override
+    public void checkUpdate() {
+        Api.checkUpdate(mView.onCheckUpdate());
+    }
 }

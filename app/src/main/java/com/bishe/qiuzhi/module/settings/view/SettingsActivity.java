@@ -1,6 +1,8 @@
 package com.bishe.qiuzhi.module.settings.view;
 
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
@@ -12,6 +14,7 @@ import com.bishe.qiuzhi.net.OnGsonRespListener;
 
 public class SettingsActivity extends BaseActivity<SettingsPresenter> implements SettingsContract.View {
     private Button btnSignOut;
+    private LinearLayout llCheckUpdate;
 
     @Override
     protected int getLayout() {
@@ -21,11 +24,13 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter> implements
     @Override
     protected void initView() {
         btnSignOut = findViewById(R.id.btn_sign_out);
+        llCheckUpdate = findViewById(R.id.ll_check_update);
     }
 
     @Override
     protected void initEventAndData() {
         btnSignOut.setOnClickListener(v -> mPresenter.signOut());
+        llCheckUpdate.setOnClickListener(v -> mPresenter.checkUpdate());
     }
 
     @Override
@@ -49,6 +54,21 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter> implements
                 setResult(RESULT_OK);
                 finish();
                 Toast.makeText(mContext, error, Toast.LENGTH_LONG).show();
+            }
+        };
+    }
+
+    @Override
+    public OnGsonRespListener onCheckUpdate() {
+        return new OnGsonRespListener() {
+            @Override
+            public void onSuccess(Object data) {
+                Toast.makeText(mContext, R.string.check_update_success, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFail(String error) {
+                Toast.makeText(mContext, R.string.check_update_success, Toast.LENGTH_LONG).show();
             }
         };
     }

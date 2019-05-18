@@ -23,8 +23,8 @@ public class SeminarDetailModel implements SeminarDetailContract.Model {
     private String name;
     private int school_id;
     private String address;
-    private int start_time;
-    private int end_time;
+    private long start_time;
+    private long end_time;
     private String content;
     private int weigh;
     private String create_time;
@@ -69,19 +69,19 @@ public class SeminarDetailModel implements SeminarDetailContract.Model {
         this.address = address;
     }
 
-    public int getStart_time() {
+    public long getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(int start_time) {
+    public void setStart_time(long start_time) {
         this.start_time = start_time;
     }
 
-    public int getEnd_time() {
+    public long getEnd_time() {
         return end_time;
     }
 
-    public void setEnd_time(int end_time) {
+    public void setEnd_time(long end_time) {
         this.end_time = end_time;
     }
 

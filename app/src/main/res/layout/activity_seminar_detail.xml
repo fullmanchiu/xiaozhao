@@ -109,7 +109,7 @@
                 android:drawableStart="@drawable/shape_job_description"
                 android:drawablePadding="20dp"
                 android:gravity="center"
-                android:text="@string/job_description"
+                android:text="@string/seminar_description"
                 android:textColor="@color/colorTextNormal"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -129,5 +129,6 @@
         android:id="@+id/bottomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:text="@string/add_to_calender" />
 </LinearLayout>
