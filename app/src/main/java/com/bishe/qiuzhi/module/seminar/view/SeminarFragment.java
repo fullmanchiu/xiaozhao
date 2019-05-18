@@ -16,16 +16,20 @@ import android.widget.Toast;
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.position.view.PositionDetailActivity;
+import com.bishe.qiuzhi.module.search.view.SearchActivity;
 import com.bishe.qiuzhi.module.seminar.adapter.SeminarAdapter;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 import com.bishe.qiuzhi.net.Api;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
+import com.bishe.qiuzhi.wedgit.NiceToolBar;
 
 import java.util.List;
+import java.util.PropertyResourceBundle;
 
 public class SeminarFragment extends Fragment {
     private RecyclerView recyclerView;
     private SeminarAdapter mSeminarAdapter;
+    private NiceToolBar niceToolBar;
 
     @Nullable
     @Override
@@ -34,6 +38,8 @@ public class SeminarFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rv_seminar);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        niceToolBar = view.findViewById(R.id.niceToolBar);
+        niceToolBar.setOnSearchClickListener(() -> startActivity(new Intent(getActivity(), SearchActivity.class)));
         mSeminarAdapter = new SeminarAdapter(getContext());
         mSeminarAdapter.setOnItemCLickListener((position, seminarBean) -> {
             Intent intent = new Intent(getActivity(), SeminarDetailActivity.class);

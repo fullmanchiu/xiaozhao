@@ -31,8 +31,14 @@ public interface ApiService {
     @GET("api/Position/getPositionList")
     Call<Response<List<PositionBean>>> getPositions(@Query("location") String location, @Query("industry_id") int industry_id, @Query("company_type_id") int filterCompanyTypeId);
 
+    @GET("api/Position/getPositionList")
+    Call<Response<List<PositionBean>>> getPositions(@Query("name") String name);
+
     @GET("api/Seminar/getSeminarList")
     Call<Response<List<SeminarBean>>> getSeminars();
+
+    @GET("api/Seminar/getSeminarList")
+    Call<Response<List<SeminarBean>>> getSeminars(@Query("name") String name);
 
     @GET("api/user/login")
     Call<Response<LoginModel>> signIn(@Query("account") String userName, @Query("password") String pwd);

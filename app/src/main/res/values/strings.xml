@@ -66,4 +66,12 @@
     <string name="location">地区</string>
     <string name="industry">行业</string>
     <string name="companyType">公司性质</string>
+    <string name="search">搜索</string>
+    <string name="search_empty">不填关键词是不能搜索的！</string>
+    <string name="search_result_empty">未能搜索到相应结果</string>
+    <string name="search_hint">职位/宣讲会</string>
+    <string-array name="search_arr">
+        <item>职位</item>
+        <item>宣讲会</item>
+    </string-array>
 </resources>

@@ -47,6 +47,10 @@ public class Api {
         ApiGsonBase.enqueue(apiService.getPositions(), listener);
     }
 
+    public static void getPositionData(String name, OnGsonRespListener<List<PositionBean>> listener) {
+        ApiGsonBase.enqueue(apiService.getPositions(name), listener);
+    }
+
     public static void getPositionData(String location, int industryId, int filterCompanyTypeId, OnGsonRespListener<List<PositionBean>> listener) {
         ApiGsonBase.enqueue(apiService.getPositions(location, industryId, filterCompanyTypeId), listener);
     }
@@ -55,6 +59,9 @@ public class Api {
         ApiGsonBase.enqueue(apiService.getSeminars(), listener);
     }
 
+    public static void getSeminarData(String name, OnGsonRespListener<List<SeminarBean>> listener) {
+        ApiGsonBase.enqueue(apiService.getSeminars(name), listener);
+    }
     public static void signIn(String userName, String pwd, OnGsonRespListener<LoginModel> listener) {
         ApiGsonBase.enqueue(apiService.signIn(userName, pwd), listener);
     }
@@ -140,6 +147,6 @@ public class Api {
     }
 
     public static void checkUpdate(OnGsonRespListener listener) {
-        ApiGsonBase.enqueue(apiService.checkUpdate(),listener);
+        ApiGsonBase.enqueue(apiService.checkUpdate(), listener);
     }
 }

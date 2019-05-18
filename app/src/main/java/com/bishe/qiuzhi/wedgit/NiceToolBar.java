@@ -22,6 +22,15 @@ public class NiceToolBar extends Toolbar {
     private TextView tvTitle;
     private ImageView imageView;
     private String title;
+    private OnSearchClickListener onSearchClickListener;
+
+    public void setOnSearchClickListener(OnSearchClickListener onSearchClickListener) {
+        this.onSearchClickListener = onSearchClickListener;
+    }
+
+    public interface OnSearchClickListener {
+        void onClick();
+    }
 
     public NiceToolBar(Context context) {
         this(context, null);
@@ -52,7 +61,7 @@ public class NiceToolBar extends Toolbar {
             //如果没有这行代码，title不会居中显示
             tvTitle.setText(title);
             imageView.setImageDrawable(icon);
-            imageView.setVisibility(GONE);
+            imageView.setOnClickListener(v -> onSearchClickListener.onClick());
             addView(view, layoutParams);
         }
     }

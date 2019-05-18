@@ -22,8 +22,10 @@ import com.bishe.qiuzhi.module.position.adapter.PositionAdapter;
 import com.bishe.qiuzhi.module.position.model.Filter;
 import com.bishe.qiuzhi.module.position.model.Location;
 import com.bishe.qiuzhi.module.position.model.PositionBean;
+import com.bishe.qiuzhi.module.search.view.SearchActivity;
 import com.bishe.qiuzhi.net.Api;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
+import com.bishe.qiuzhi.wedgit.NiceToolBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class PositionFragment extends Fragment {
     private RecyclerView recyclerView;
     private PositionAdapter mPositionAdapter;
     private ProgressBar progressBar;
+    private NiceToolBar niceToolBar;
     private Spinner spinnerLocation, spinnerIndustry, spinnerCompanyType;
     String filterLocation = "全部";
     int filterIndustryId, filterCompanyTypeId;
@@ -44,7 +47,8 @@ public class PositionFragment extends Fragment {
         View view = inflater.inflate(R.layout.positon_fragment, container, false);
         progressBar = view.findViewById(R.id.pb);
         recyclerView = view.findViewById(R.id.rv_job);
-
+        niceToolBar = view.findViewById(R.id.niceToolBar);
+        niceToolBar.setOnSearchClickListener(() -> startActivity(new Intent(getActivity(), SearchActivity.class)));
         spinnerCompanyType = view.findViewById(R.id.spinner_more);
         companyTypeList = new ArrayList<>();
         companyTypeList.add("不限");
