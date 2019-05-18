@@ -35,18 +35,17 @@
 
     <TextView
         android:id="@+id/tv_text"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_bottom_view_text"
         android:gravity="center"
-        android:paddingLeft="106dp"
         android:paddingTop="12dp"
-        android:paddingRight="106dp"
         android:paddingBottom="12dp"
         android:text="@string/apply"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_fav"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

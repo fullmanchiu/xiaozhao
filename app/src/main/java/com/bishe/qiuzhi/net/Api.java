@@ -138,4 +138,8 @@ public class Api {
     public static void getDiscoverData(OnGsonRespListener<List<DiscoverModel>> listener) {
         ApiGsonBase.enqueue(apiService.getDiscoverData(), listener);
     }
+
+    public static void checkUpdate(OnGsonRespListener listener) {
+        ApiGsonBase.enqueue(apiService.checkUpdate(),listener);
+    }
 }

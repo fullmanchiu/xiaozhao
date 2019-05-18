@@ -53,7 +53,7 @@ public class SeminarAdapter extends RecyclerView.Adapter<SeminarAdapter.SeminarV
     public void onBindViewHolder(@NonNull SeminarViewHolder seminarViewHolder, int position) {
         final SeminarBean seminarBean = seminarBeans.get(position);
         seminarViewHolder.tvTitle.setText(seminarBean.getName());
-        String date = DateUtil.simpleFormat("MM-dd    hh:mm", seminarBean.getStart_time()) + "-" + DateUtil.simpleFormat("hh:mm", seminarBean.getEnd_time());
+        String date = DateUtil.simpleFormat("MM-dd    HH:mm", seminarBean.getStart_time()) + "-" + DateUtil.simpleFormat("HH:mm", seminarBean.getEnd_time());
         seminarViewHolder.tvDate.setText(date);
         seminarViewHolder.tvLocation.setText(seminarBean.getSchool().getName() + " · " + seminarBean.getAddress());
         Glide.with(mContext).load(Constants.DOMAIN + seminarBean.getSchool().getImage()).into(seminarViewHolder.ivLogo);

@@ -52,6 +52,7 @@ public class NiceToolBar extends Toolbar {
             //如果没有这行代码，title不会居中显示
             tvTitle.setText(title);
             imageView.setImageDrawable(icon);
+            imageView.setVisibility(GONE);
             addView(view, layoutParams);
         }
     }

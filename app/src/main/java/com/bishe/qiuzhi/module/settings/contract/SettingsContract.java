@@ -10,9 +10,13 @@ public interface SettingsContract {
 
     interface View extends BaseView {
         OnGsonRespListener onSignOut();
+
+        OnGsonRespListener onCheckUpdate();
     }
 
     interface Presenter extends BasePresenter<View> {
         void signOut();
+
+        void checkUpdate();
     }
 }

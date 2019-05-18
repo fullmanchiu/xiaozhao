@@ -33,7 +33,7 @@ public class PositionFragment extends Fragment {
     private PositionAdapter mPositionAdapter;
     private ProgressBar progressBar;
     private Spinner spinnerLocation, spinnerIndustry, spinnerCompanyType;
-    String filterLocation;
+    String filterLocation = "全部";
     int filterIndustryId, filterCompanyTypeId;
     private ArrayAdapter<String> locationAdapter, industryAdapter, companyTypeAdapter;
     private List<String> locationList, industryList, companyTypeList;

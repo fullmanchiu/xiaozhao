@@ -3,6 +3,7 @@ package com.bishe.qiuzhi.module.seminar.view;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
@@ -21,6 +22,7 @@ import com.bishe.qiuzhi.module.seminar.contract.SeminarDetailContract;
 import com.bishe.qiuzhi.module.seminar.model.SeminarDetailModel;
 import com.bishe.qiuzhi.module.seminar.presenter.SeminarDetailPresenter;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
+import com.bishe.qiuzhi.utils.CalendarReminderUtils;
 import com.bishe.qiuzhi.utils.DateUtil;
 import com.bishe.qiuzhi.wedgit.BottomView;
 import com.bishe.qiuzhi.wedgit.TitleBar;
@@ -33,6 +35,7 @@ public class SeminarDetailActivity extends BaseActivity<SeminarDetailPresenter> 
     private ScrollView scrollView;
     private BottomView bottomView;
     private TextView tvSeminarName, tvDate, tvSchool, tvAddress, tvContent;
+    private SeminarDetailModel seminarDetailModel;
 
 
     @Override
@@ -55,6 +58,7 @@ public class SeminarDetailActivity extends BaseActivity<SeminarDetailPresenter> 
         tvContent = findViewById(R.id.tv_seminar_description);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void initEventAndData() {
         mPresenter.getSeminarDetail(id);
@@ -77,14 +81,8 @@ public class SeminarDetailActivity extends BaseActivity<SeminarDetailPresenter> 
             }
         });
         bottomView.setOnTextButtonClickListener(() -> {
-            if (!App.getInstance().isLogin()) {
-                showLoginDialog();
-            } else {
-                if (bottomView.getApplyStatus()) {
-                    Toast.makeText(mContext, R.string.resueSendAlrealdy, Toast.LENGTH_SHORT).show();
-                } else {
-                    //TODO 加入日历
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                CalendarReminderUtils.addCalendarEvent(mContext, tvSeminarName.getText().toString(), tvSchool.getText().toString(), seminarDetailModel.getStart_time() * 1000, seminarDetailModel.getEnd_time() * 1000, 1);
             }
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -125,10 +123,11 @@ public class SeminarDetailActivity extends BaseActivity<SeminarDetailPresenter> 
         return new OnGsonRespListener<SeminarDetailModel>() {
             @Override
             public void onSuccess(SeminarDetailModel data) {
+                seminarDetailModel = data;
                 progressBar.setVisibility(View.GONE);
                 constraintLayout.setVisibility(View.VISIBLE);
                 tvSeminarName.setText(data.getName());
-                String date = DateUtil.simpleFormat("MM-dd    hh:mm", data.getStart_time()) + "-" + DateUtil.simpleFormat("hh:mm", data.getEnd_time());
+                String date = DateUtil.simpleFormat("MM-dd    HH:mm", data.getStart_time()) + "-" + DateUtil.simpleFormat("HH:mm", data.getEnd_time());
                 tvDate.setText(date);
                 tvSchool.setText(data.getSchool().getName());
                 tvAddress.setText(data.getAddress());

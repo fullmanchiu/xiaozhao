@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
@@ -110,6 +109,7 @@ public class BottomView extends ConstraintLayout {
             textView = view.findViewById(R.id.tv_text);
             ivShare = view.findViewById(R.id.iv_share);
             ivFav = view.findViewById(R.id.iv_fav);
+            textView.setText(text);
         }
     }
 

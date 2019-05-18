@@ -57,4 +57,7 @@
     <string name="companyPosition">再招职位</string>
     <string name="name">姓名</string>
     <string name="position_target">求职目标</string>
+    <string name="add_to_calender">添加到日历</string>
+    <string name="seminar_description">宣讲会介绍</string>
+    <string name="check_update_success">当前版本已是最新版本</string>
 </resources>

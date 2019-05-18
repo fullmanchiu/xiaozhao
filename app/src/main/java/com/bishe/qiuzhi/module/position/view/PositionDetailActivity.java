@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -23,12 +24,10 @@ import com.bishe.qiuzhi.module.position.contract.PositionDetailContract;
 import com.bishe.qiuzhi.module.position.model.PositionDetailModel;
 import com.bishe.qiuzhi.module.position.presenter.PositionDetailPresenter;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
+import com.bishe.qiuzhi.utils.DateUtil;
 import com.bishe.qiuzhi.wedgit.BottomView;
 import com.bishe.qiuzhi.wedgit.TitleBar;
 import com.bumptech.glide.Glide;
-
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter> implements PositionDetailContract.View {
     private TitleBar titleBar;
@@ -152,8 +151,9 @@ public class PositionDetailActivity extends BaseActivity<PositionDetailPresenter
                     companyName = data.getCompany().getName();
                     companyLogo = data.getCompany().getImage();
                     tvPositionName.setText(data.getTitle());
-                    SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");
-                    tvDate.setText(sdf.format(new Timestamp(data.getPublish_time())));
+                    long timestamp = System.currentTimeMillis();
+                    Log.d("aaaa", "timestamp:" + timestamp);
+                    tvDate.setText(DateUtil.simpleFormat("MM-dd", (long) data.getPublish_time()));
                     tvNum.setText("招" + data.getNum() + "人");
                     tvLocation.setText(data.getLocation());
                     Glide.with(mContext).load(Constants.DOMAIN + companyLogo).into(ivCompanyLogo);

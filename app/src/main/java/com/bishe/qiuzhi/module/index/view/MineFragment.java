@@ -21,6 +21,7 @@ import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.apply.view.ApplyActivity;
 import com.bishe.qiuzhi.module.fav.view.FavActivity;
 import com.bishe.qiuzhi.module.login.view.LoginActivity;
+import com.bishe.qiuzhi.module.position.view.PositionDetailActivity;
 import com.bishe.qiuzhi.module.resume.view.ResumeActivity;
 import com.bishe.qiuzhi.module.settings.view.SettingsActivity;
 import com.bumptech.glide.Glide;
@@ -48,10 +49,10 @@ public class MineFragment extends Fragment {
         llFav = view.findViewById(R.id.ll_fav);
         ivAvatar = view.findViewById(R.id.iv_avatar);
         llApply.setOnClickListener(v -> {
-            if (!App.getInstance().isLogin()) {
-                showLoginDialog();
-            } else {
+            if (App.getInstance().isLogin()) {
                 startActivity(new Intent(getContext(), ApplyActivity.class));
+            } else {
+                showLoginDialog();
             }
         });
 
@@ -67,17 +68,17 @@ public class MineFragment extends Fragment {
             startActivity(intent);
         });
         llFav.setOnClickListener(v -> {
-            if (!App.getInstance().isLogin()) {
-                showLoginDialog();
-            } else {
+            if (App.getInstance().isLogin()) {
                 startActivity(new Intent(getContext(), FavActivity.class));
+            } else {
+                showLoginDialog();
             }
         });
         llResume.setOnClickListener(v -> {
-            if (!App.getInstance().isLogin()) {
-                showLoginDialog();
-            } else {
+            if (App.getInstance().isLogin()) {
                 startActivity(new Intent(getContext(), ResumeActivity.class));
+            } else {
+                showLoginDialog();
             }
         });
         if (App.getInstance().isLogin()) {
@@ -112,19 +113,19 @@ public class MineFragment extends Fragment {
         }
     }
 
-    private void showLoginDialog() {
-        final AlertDialog.Builder loginDialog = new AlertDialog.Builder(getActivity());
-        loginDialog.setMessage(R.string.loginDialogMessage)
-                .setPositiveButton(R.string.loginDialogPositiveText
-                        , (dialog, which) -> startActivity(
-                                new Intent(getActivity(), LoginActivity.class)))
-                .setNegativeButton(R.string.loginDialogNegativeText
-                        , (dialog, which) -> dialog.cancel());
-        loginDialog.show();
-    }
-
     private void signOut() {
         tvName.setText(R.string.loginHint);
         tvName.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), LoginActivity.class), requestCodeLogin));
+    }
+
+    private void showLoginDialog() {
+        final AlertDialog.Builder loginDialog = new AlertDialog.Builder(getContext());
+        loginDialog.setMessage(R.string.loginDialogMessage)
+                .setPositiveButton(R.string.loginDialogPositiveText
+                        , (dialog, which) -> startActivity(
+                                new Intent(getContext(), LoginActivity.class)))
+                .setNegativeButton(R.string.loginDialogNegativeText
+                        , (dialog, which) -> dialog.cancel());
+        loginDialog.show();
     }
 }

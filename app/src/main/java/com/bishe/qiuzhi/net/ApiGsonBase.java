@@ -60,6 +60,7 @@ public class ApiGsonBase {
                             listener.onFail(data.getMessage());
                         }
                     } else {
+                        listener.onFail("response is null");
                         Log.d(TAG, "response is null");
                     }
                 }

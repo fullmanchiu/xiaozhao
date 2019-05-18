@@ -152,7 +152,7 @@
                 android:drawableStart="@drawable/shape_job_description"
                 android:drawablePadding="20dp"
                 android:gravity="center"
-                android:text="@string/position_target"
+                android:text="@string/job_description"
                 android:textColor="@color/colorTextNormal"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -173,5 +173,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
+        app:text="@string/apply"
         app:layout_constraintBottom_toBottomOf="parent" />
 </LinearLayout>
