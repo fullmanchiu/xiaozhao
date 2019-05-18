@@ -63,4 +63,7 @@
     <string name="feedback_hint">请将您宝贵的建议发送至我们邮箱（可能需要您先在本机登陆您的邮箱）</string>
     <string name="ok">确定</string>
     <string name="cancel">我没意见了</string>
+    <string name="location">地区</string>
+    <string name="industry">行业</string>
+    <string name="companyType">公司性质</string>
 </resources>
