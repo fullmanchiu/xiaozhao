@@ -21,7 +21,6 @@ import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.apply.view.ApplyActivity;
 import com.bishe.qiuzhi.module.fav.view.FavActivity;
 import com.bishe.qiuzhi.module.login.view.LoginActivity;
-import com.bishe.qiuzhi.module.position.view.PositionDetailActivity;
 import com.bishe.qiuzhi.module.resume.view.ResumeActivity;
 import com.bishe.qiuzhi.module.settings.view.SettingsActivity;
 import com.bumptech.glide.Glide;
@@ -30,7 +29,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class MineFragment extends Fragment {
     private TextView tvName;
-    private RelativeLayout rlSettings, rlAbout, rlShare;
+    private RelativeLayout rlSettings, rlAbout, rlShare, rlFeedBack;
     private ImageView ivAvatar;
     private LinearLayout llResume, llFav, llApply;
     private final int requestCodeLogin = 100;
@@ -45,6 +44,26 @@ public class MineFragment extends Fragment {
         rlShare = view.findViewById(R.id.rl_share);
         rlAbout = view.findViewById(R.id.rl_about);
         rlSettings = view.findViewById(R.id.rl_settings);
+        rlFeedBack = view.findViewById(R.id.rl_feedback);
+        rlFeedBack.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle(R.string.feedback);
+            builder.setMessage(R.string.feedback_hint);
+            builder.setCancelable(true);
+            builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+                String[] email = {"2418620804@qq.com"};//用来接收意见反馈的邮箱
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setType("message/rfc822"); // 设置邮件格式
+                intent.putExtra(Intent.EXTRA_EMAIL, email); // 接收人
+                intent.putExtra(Intent.EXTRA_CC, email); // 抄送人
+                intent.putExtra(Intent.EXTRA_SUBJECT, "校招App意见反馈"); // 主题
+                intent.putExtra(Intent.EXTRA_TEXT, "请在此处填写您的宝贵意见"); // 正文
+                startActivity(Intent.createChooser(intent, "发送邮件邮件"));
+            });
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        });
         llResume = view.findViewById(R.id.ll_resume);
         llFav = view.findViewById(R.id.ll_fav);
         ivAvatar = view.findViewById(R.id.iv_avatar);
