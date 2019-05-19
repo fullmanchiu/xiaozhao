@@ -94,7 +94,7 @@ public interface ApiService {
     @GET("api/SeminarCollect/addSeminar")
     Call<Response> favSeminar(@Query("seminar_id") int id, @Query("user_id") int user_id, @Query("token") String token);
 
-    @GET("api/School/getAreaList")
+    @GET("api/Position/getAreaList")
     Call<Response<List<Location>>> getLocationList();
 
     @GET("api/Position/getPositionSearchList")

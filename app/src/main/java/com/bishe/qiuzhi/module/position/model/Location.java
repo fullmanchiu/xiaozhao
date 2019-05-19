@@ -6,13 +6,13 @@ public class Location {
      * school_address : 南京
      */
 
-    private String school_address;
+    private String location;
 
-    public String getSchool_address() {
-        return school_address;
+    public String getLocation() {
+        return location;
     }
 
-    public void setSchool_address(String school_address) {
-        this.school_address = school_address;
+    public void setLocation(String school_address) {
+        this.location = school_address;
     }
 }

@@ -150,7 +150,7 @@ public class PositionFragment extends Fragment {
                 locationList.clear();
                 locationList.add("全部");
                 for (Location location : data) {
-                    locationList.add(location.getSchool_address());
+                    locationList.add(location.getLocation());
                 }
                 locationAdapter.notifyDataSetChanged();
             }
