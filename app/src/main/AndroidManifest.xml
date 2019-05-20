@@ -14,7 +14,8 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".module.search.view.SearchActivity"></activity>
+        <activity android:name=".module.accountSettings.view.AccountSettingsActivity"></activity>
+        <activity android:name=".module.search.view.SearchActivity" />
         <activity android:name=".module.apply.view.ApplyActivity" />
         <activity android:name=".module.fav.view.FavActivity" />
         <activity android:name=".module.company.view.CompanyActivity" />

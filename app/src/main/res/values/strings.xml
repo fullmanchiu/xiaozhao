@@ -70,6 +70,18 @@
     <string name="search_empty">不填关键词是不能搜索的！</string>
     <string name="search_result_empty">未能搜索到相应结果</string>
     <string name="search_hint">职位/宣讲会</string>
+    <string name="text_account_settings_username">登陆用户名</string>
+    <string name="text_account_settings_nickname">昵称</string>
+    <string name="text_account_settings_email">邮箱</string>
+    <string name="text_account_settings_mobile">手机号码</string>
+    <string name="text_account_settings_pwd">更改密码</string>
+    <string name="text_account_settings_logout">账户注销</string>
+    <string name="text_account_settings_logout_hint">方法一：使用注冊郵箱發送包含用戶名及联系电话的邮件至2418620804@qq.com,客服会联系你进行账号注销。\n方法二：致电18896527609，与客服沟通进行账号注销。服务时间：周一至周五9：30-17：00。\n特别提醒：账号注销后，不能恢复。</string>
+    <string name="username_cannot_change">方法一：使用注冊郵箱發送包含用戶名及联系电话的邮件至2418620804@qq.com,客服会联系你进行修改。\n方法二：致电18896527609，与客服沟通进行修改。服务时间：周一至周五9：30-17：00。\n特别提醒：用户名作为登陆凭证请勿随意修改，注意保护营私。</string>
+    <string name="username_change_title">修改登陆用户名</string>
+    <string name="nickname_modify">修改昵称</string>
+    <string name="nickname_modify_hint" />
+    <string name="nickname">昵称</string>
     <string-array name="search_arr">
         <item>职位</item>
         <item>宣讲会</item>

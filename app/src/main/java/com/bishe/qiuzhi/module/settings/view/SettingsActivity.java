@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.module.settings.view;
 
-import android.view.View;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -8,13 +9,15 @@ import android.widget.Toast;
 import com.bishe.qiuzhi.R;
 import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.app.BaseActivity;
+import com.bishe.qiuzhi.module.accountSettings.view.AccountSettingsActivity;
+import com.bishe.qiuzhi.module.login.view.LoginActivity;
 import com.bishe.qiuzhi.module.settings.contract.SettingsContract;
 import com.bishe.qiuzhi.module.settings.presenter.SettingsPresenter;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
 
 public class SettingsActivity extends BaseActivity<SettingsPresenter> implements SettingsContract.View {
     private Button btnSignOut;
-    private LinearLayout llCheckUpdate;
+    private LinearLayout llCheckUpdate, llAccount;
 
     @Override
     protected int getLayout() {
@@ -25,12 +28,21 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter> implements
     protected void initView() {
         btnSignOut = findViewById(R.id.btn_sign_out);
         llCheckUpdate = findViewById(R.id.ll_check_update);
+        llAccount = findViewById(R.id.ll_account_settings);
     }
 
     @Override
     protected void initEventAndData() {
         btnSignOut.setOnClickListener(v -> mPresenter.signOut());
         llCheckUpdate.setOnClickListener(v -> mPresenter.checkUpdate());
+        llAccount.setOnClickListener(v -> {
+            if (App.getInstance().isLogin()) {
+                startActivity(new Intent(mContext, AccountSettingsActivity.class));
+            } else {
+                showLoginDialog();
+            }
+
+        });
     }
 
     @Override
@@ -71,5 +83,16 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter> implements
                 Toast.makeText(mContext, R.string.check_update_success, Toast.LENGTH_LONG).show();
             }
         };
+    }
+
+    private void showLoginDialog() {
+        final AlertDialog.Builder loginDialog = new AlertDialog.Builder(mContext);
+        loginDialog.setMessage(R.string.loginDialogMessage)
+                .setPositiveButton(R.string.loginDialogPositiveText
+                        , (dialog, which) -> startActivity(
+                                new Intent(mContext, LoginActivity.class)))
+                .setNegativeButton(R.string.loginDialogNegativeText
+                        , (dialog, which) -> dialog.cancel());
+        loginDialog.show();
     }
 }
