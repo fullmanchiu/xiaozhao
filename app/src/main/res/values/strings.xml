@@ -87,7 +87,33 @@
     <string name="email">邮箱</string>
     <string name="email_modify_hint">修改成功后需使用新的邮箱登录</string>
     <string name="mobile_modify_title">修改手机号</string>
-    <string name="mobile_modify_hint">方法一：使用注冊郵箱發送包含用戶名及联系电话的邮件至2418620804@qq.com,客服会联系你进行修改。\n方法二：致电18896527609，与客服沟通进行修改。服务时间：周一至周五9：30-17：00。\n特别提醒：手机号作为登陆凭证请勿随意修改，注意保护营私。</string>
+    <string name="mobile_modify_hint">方法一：使用注冊郵箱發送包含用戶名及联系电话的邮件至2418620804@qq.com,客服会联系你进行修改。\n方法二：致电18896527609，与客服沟通进行修改。服务时间：周一至周五9：30-17：00。\n特别提醒：手机号作为登陆凭证请勿随意修改，注意保护隐私。</string>
+    <string name="forgot_pwd_hint">由于各大云商提供的短信验证码功能，个人认证需要上架App或著作权等限制条件，暂不支持通过短信验证码重置密码。\n 可通过以下方式重置密码:\n方法一：使用注冊郵箱發送包含用戶名及联系电话的邮件至2418620804@qq.com,客服会联系你进行修改。\n方法二：致电18896527609，与客服沟通进行修改。服务时间：周一至周五9：30-17：00。\n特别提醒：请勿在邮件中包含密码等信息注意保护隐私。</string>
+    <string name="resume_empty">您还未创建简历，是否现在创建</string>
+    <string name="resumeDiloagPositiveText">去创建</string>
+    <string name="resumeDialogNegativeText">以后再说</string>
+    <string name="resume_edit">编辑简历</string>
+    <string name="save">保存</string>
+    <string name="edit">编辑</string>
+    <string name="sex">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="birth">出生年月</string>
+    <string name="address">常住地</string>
+    <string name="mobile">联系方式</string>
+    <string name="edu_info">教育经历</string>
+    <string name="school">学校</string>
+    <string name="start_time">入学时间</string>
+    <string name="end_time">毕业时间</string>
+    <string name="qualifications">学历</string>
+    <string name="skill">专业</string>
+    <string name="work_type">职位类型</string>
+    <string name="work_type_hint">全职/兼职</string>
+    <string name="work_address">工作地点</string>
+    <string name="work_address_hint">苏州</string>
+    <string name="salary">薪资要求</string>
+    <string name="work_industry">行业</string>
+    <string name="tag">自我简介</string>
     <string-array name="search_arr">
         <item>职位</item>
         <item>宣讲会</item>

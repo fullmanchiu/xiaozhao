@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.module.login.view;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private TextView tvSignUp, tvForgotPwd;
     private Button btnSignIn;
     private EditText etUserName, etPwd;
+    private AlertDialog alertDialog;
 
     @Override
     protected int getLayout() {
@@ -37,7 +39,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     protected void initEventAndData() {
         tvSignUp.setOnClickListener(v -> startActivity(new Intent(mContext, SignUpActivity.class)));
-//        tvForgotPwd.setOnClickListener(v -> startActivity(new Intent(mContext, ForgotPwdActivity.class)));
+        tvForgotPwd.setOnClickListener(v -> {
+            showAlert(getString(R.string.forgot_pwd), getString(R.string.forgot_pwd_hint));
+        });
         btnSignIn.setOnClickListener(v -> {
             mPresenter.signIn(etUserName.getText().toString(), etPwd.getText().toString());
         });
@@ -64,4 +68,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             }
         };
     }
+
+    private void showAlert(String title, String alert) {
+        if (alertDialog == null) {
+            AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(mContext);
+            builder.setCancelable(true);
+            builder.setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss());
+            alertDialog = builder.create();
+        }
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(alert);
+        alertDialog.show();
+    }
+
 }

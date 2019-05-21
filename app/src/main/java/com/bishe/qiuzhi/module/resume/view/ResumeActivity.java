@@ -1,6 +1,9 @@
 package com.bishe.qiuzhi.module.resume.view;
 
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
@@ -16,7 +19,7 @@ import com.bishe.qiuzhi.wedgit.TitleBar;
 import com.google.gson.Gson;
 
 public class ResumeActivity extends BaseActivity<ResumePresenter> implements ResumeContract.View {
-    private TextView tvName, tvInfo, tvTel, tvEmail, tvSalary, tvLocation, tvIndustry;
+    private TextView tvName, tvInfo, tvTel, tvEmail, tvSalary, tvLocation, tvIndustry, tvEdit;
     private TitleBar titleBar;
 
     @Override
@@ -34,20 +37,20 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
         tvSalary = findViewById(R.id.tv_salary);
         tvLocation = findViewById(R.id.tv_location);
         tvIndustry = findViewById(R.id.tv_industry);
+        tvEdit = findViewById(R.id.tv_edit);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.getResume();
     }
 
     @Override
     protected void initEventAndData() {
         mPresenter.getResume();
+        tvEdit.setOnClickListener(v -> startActivity(new Intent(mContext, ResumeEditActivity.class)));
         titleBar.setOnBackClickListener(() -> onBackPressed());
-//        mPresenter.postResume(new Gson().toJson(
-//                new ResumeModel(App.getInstance().getUserData().getUser_id() + "",
-//                        new ResumeModel.MyInfoBean("邱亮", "男", "1992-05-28",
-//                                "江苏省苏州市", "18550038654", "526178731@qq.com")
-//                        , new ResumeModel.EducationBean("东南大学", "2013-8-1",
-//                        "2015-8-1", "本科", "计算机课科学与技术")
-//                        , new ResumeModel.TargetBean("全职", "苏州",
-//                        "5k-6k", "同时天才", "计算机科学与技术"))));
     }
 
     @Override
@@ -72,6 +75,7 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
 
             @Override
             public void onFail(String error) {
+
                 Log.d("aaaaa", error);
             }
         };
@@ -90,5 +94,16 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
 
             }
         };
+    }
+
+    private void showDialog() {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+        dialog.setMessage(R.string.resume_empty)
+                .setPositiveButton(R.string.resumeDiloagPositiveText
+                        , (dialogInterface, which) -> startActivity(
+                                new Intent(mContext, ResumeEditActivity.class)))
+                .setNegativeButton(R.string.resumeDialogNegativeText
+                        , (dialogInterface, which) -> dialogInterface.cancel());
+        dialog.show();
     }
 }

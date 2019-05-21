@@ -7,11 +7,27 @@
     android:orientation="vertical"
     tools:context=".module.resume.view.ResumeActivity">
 
-    <com.bishe.qiuzhi.wedgit.TitleBar
-        android:id="@+id/titleBar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/resume" />
+        android:orientation="horizontal">
+
+        <com.bishe.qiuzhi.wedgit.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:title="@string/resume" />
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp" />
+    </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -95,7 +111,7 @@
                 android:drawableStart="@drawable/shape_job_description"
                 android:drawablePadding="20dp"
                 android:gravity="center"
-                android:text="@string/job_description"
+                android:text="@string/position_target"
                 android:textColor="@color/colorTextNormal"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"

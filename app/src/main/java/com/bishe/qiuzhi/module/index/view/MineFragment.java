@@ -127,6 +127,7 @@ public class MineFragment extends Fragment {
         if (init && tvName != null && ivAvatar != null && !App.getInstance().isLogin()) {
             tvName.setText(R.string.loginHint);
             ivAvatar.setImageResource(R.drawable.ic_default_avatar);
+            tvName.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), LoginActivity.class), requestCodeLogin));
         }
         if (init && tvName != null && ivAvatar != null && App.getInstance().isLogin()) {
             tvName.setText(App.getInstance().getUserData().getNickname());
