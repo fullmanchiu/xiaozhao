@@ -3,20 +3,15 @@ package com.bishe.qiuzhi.module.resume.view;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.bishe.qiuzhi.R;
-import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.app.BaseActivity;
-import com.bishe.qiuzhi.db.UserManager;
 import com.bishe.qiuzhi.module.resume.contract.ResumeContract;
 import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.bishe.qiuzhi.module.resume.presenter.ResumePresenter;
 import com.bishe.qiuzhi.net.OnGsonRespListener;
-import com.bishe.qiuzhi.utils.GsonUtil;
 import com.bishe.qiuzhi.wedgit.TitleBar;
-import com.google.gson.Gson;
 
 public class ResumeActivity extends BaseActivity<ResumePresenter> implements ResumeContract.View {
     private TextView tvName, tvInfo, tvTel, tvEmail, tvSalary, tvLocation, tvIndustry, tvEdit;
@@ -75,7 +70,7 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
 
             @Override
             public void onFail(String error) {
-
+                showDialog();
                 Log.d("aaaaa", error);
             }
         };
