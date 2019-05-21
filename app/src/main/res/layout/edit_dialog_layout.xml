@@ -38,4 +38,10 @@
         android:textColor="@color/colorTextLight"
         android:textSize="14dp" />
 
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_search_btn"
+        android:text="@string/ok" />
 </LinearLayout>

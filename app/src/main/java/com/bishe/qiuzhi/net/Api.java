@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.net;
 
 import com.bishe.qiuzhi.app.App;
+import com.bishe.qiuzhi.module.accountSettings.model.UploadResult;
 import com.bishe.qiuzhi.module.apply.model.ApplyModel;
 import com.bishe.qiuzhi.module.discover.model.DiscoverModel;
 import com.bishe.qiuzhi.module.fav.model.FavModel;
@@ -13,7 +14,12 @@ import com.bishe.qiuzhi.module.resume.model.ResumeModel;
 import com.bishe.qiuzhi.module.seminar.model.SeminarBean;
 import com.bishe.qiuzhi.module.seminar.model.SeminarDetailModel;
 
+import java.io.File;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * 网络请求Api
@@ -31,7 +37,7 @@ public class Api {
     static {
         HTTP_SCHEMA = "http";
         HTTP_SCHEMA_SUFFIX = "://";
-        HOST = "xz.colafans.cn/index.php/";
+        HOST = "colafans.cn/index.php/";
         apiService = ApiGsonBase.getGsonRetrofit(getDomain()).create(ApiService.class);
     }
 
@@ -62,6 +68,7 @@ public class Api {
     public static void getSeminarData(String name, OnGsonRespListener<List<SeminarBean>> listener) {
         ApiGsonBase.enqueue(apiService.getSeminars(name), listener);
     }
+
     public static void signIn(String userName, String pwd, OnGsonRespListener<LoginModel> listener) {
         ApiGsonBase.enqueue(apiService.signIn(userName, pwd), listener);
     }
@@ -71,7 +78,7 @@ public class Api {
     }
 
     public static void signOut(OnGsonRespListener listener) {
-        ApiGsonBase.enqueue(apiService.signOut(getToken()), listener);
+        //  ApiGsonBase.enqueue(apiService.signOut(getToken()), listener);
     }
 
     public static void getPositionDetail(int id, OnGsonRespListener<PositionDetailModel> listener) {
@@ -148,5 +155,19 @@ public class Api {
 
     public static void checkUpdate(OnGsonRespListener listener) {
         ApiGsonBase.enqueue(apiService.checkUpdate(), listener);
+    }
+
+    public static void modifyUser(OnGsonRespListener listener) {
+
+        ApiGsonBase.enqueue(apiService.modifyUser(App.getInstance().getUserData().getNickname(),
+                App.getInstance().getUserData().getAvatar(),
+                App.getInstance().getUserData().getEmail(),
+                App.getInstance().getUserData().getMobile(), getToken()), listener);
+    }
+
+    public static void uploadAvatar(String name, File file, OnGsonRespListener<UploadResult> listener) {
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpg"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+        ApiGsonBase.enqueue(apiService.uploadAvatar(body), listener);
     }
 }

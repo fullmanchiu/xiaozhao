@@ -33,7 +33,12 @@ public class SettingsActivity extends BaseActivity<SettingsPresenter> implements
 
     @Override
     protected void initEventAndData() {
-        btnSignOut.setOnClickListener(v -> mPresenter.signOut());
+        btnSignOut.setOnClickListener(v -> {
+            //mPresenter.signOut();
+            App.getInstance().signOut();
+            setResult(RESULT_OK);
+            finish();
+        });
         llCheckUpdate.setOnClickListener(v -> mPresenter.checkUpdate());
         llAccount.setOnClickListener(v -> {
             if (App.getInstance().isLogin()) {

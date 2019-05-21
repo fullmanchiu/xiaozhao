@@ -1,6 +1,8 @@
 package com.bishe.qiuzhi.net;
 
 
+import com.bishe.qiuzhi.R;
+import com.bishe.qiuzhi.module.accountSettings.model.UploadResult;
 import com.bishe.qiuzhi.module.apply.model.ApplyModel;
 import com.bishe.qiuzhi.module.discover.model.DiscoverModel;
 import com.bishe.qiuzhi.module.fav.model.FavModel;
@@ -15,9 +17,17 @@ import com.bishe.qiuzhi.module.seminar.model.SeminarDetailModel;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -105,4 +115,11 @@ public interface ApiService {
 
     @GET("api/app/check")
     Call<Response> checkUpdate();
+
+    @GET("api/user/profile")
+    Call<Response> modifyUser(@Query("nickname") String nickName, @Query("avatar") String avatar, @Query("email") String email, @Query("mobile") String mobile, @Query("token") String token);
+
+    @Multipart
+    @POST("api/common/upload")
+    Call<Response<UploadResult>> uploadAvatar(@Part MultipartBody.Part file);
 }

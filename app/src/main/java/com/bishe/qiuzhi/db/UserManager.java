@@ -12,6 +12,7 @@ import com.bishe.qiuzhi.module.login.model.LoginModel;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_AVATAR;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_MOBILE;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_TOKEN;
+import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_USER_EMAIL;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_USER_NAME;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_NAME;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_NICK_NAME;
@@ -50,6 +51,7 @@ public class UserManager {
         values.put(USER_TABLE_COLUMN_USER_ID, user.getUser_id());
         values.put(USER_TABLE_COLUMN_USER_NAME, user.getUsername());
         values.put(USER_TABLE_COLUMN_NICK_NAME, user.getNickname());
+        values.put(USER_TABLE_COLUMN_USER_EMAIL, user.getEmail());
         values.put(USER_TABLE_COLUMN_MOBILE, user.getMobile());
         values.put(USER_TABLE_COLUMN_AVATAR, user.getAvatar());
         values.put(USER_TABLE_COLUMN_TOKEN, user.getToken());
@@ -68,9 +70,10 @@ public class UserManager {
             String userName = cursor.getString(cursor.getColumnIndex(USER_TABLE_COLUMN_USER_NAME));
             String nickName = cursor.getString(cursor.getColumnIndex(USER_TABLE_COLUMN_NICK_NAME));
             String mobile = cursor.getString(cursor.getColumnIndex(USER_TABLE_COLUMN_MOBILE));
+            String email = cursor.getString(cursor.getColumnIndex(USER_TABLE_COLUMN_USER_EMAIL));
             String avatar = cursor.getString(cursor.getColumnIndex(USER_TABLE_COLUMN_AVATAR));
             String token = cursor.getString(cursor.getColumnIndex(USER_TABLE_COLUMN_TOKEN));
-            user = new LoginModel.UserinfoBean(userId, userName, nickName, mobile, avatar, token);
+            user = new LoginModel.UserinfoBean(userId, userName, nickName, email, mobile, avatar, token);
         }
         return user;
     }

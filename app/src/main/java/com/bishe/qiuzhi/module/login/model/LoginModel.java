@@ -30,6 +30,7 @@ public class LoginModel implements LoginContract.Model {
         public static final String USER_TABLE_COLUMN_USER_ID = "user_id";
         public static final String USER_TABLE_COLUMN_USER_NAME = "user_name";
         public static final String USER_TABLE_COLUMN_NICK_NAME = "nick_name";
+        public static final String USER_TABLE_COLUMN_USER_EMAIL = "user_email";
         public static final String USER_TABLE_COLUMN_MOBILE = "mobile";
         public static final String USER_TABLE_COLUMN_AVATAR = "avatar";
         public static final String USER_TABLE_COLUMN_TOKEN = "token";
@@ -52,17 +53,28 @@ public class LoginModel implements LoginContract.Model {
         private String nickname;
         private String mobile;
         private String avatar;
+        private String email;
         private int score;
         private String token;
         private int user_id;
         private int createtime;
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
         private int expiretime;
         private int expires_in;
 
-        public UserinfoBean(int userId, String userName, String nickName, String mobile, String avatar, String token) {
+        public UserinfoBean(int userId, String userName, String nickName, String email, String mobile, String avatar, String token) {
             this.user_id = userId;
             this.username = userName;
             this.nickname = nickName;
+            this.email = email;
             this.mobile = mobile;
             this.avatar = avatar;
             this.token = token;

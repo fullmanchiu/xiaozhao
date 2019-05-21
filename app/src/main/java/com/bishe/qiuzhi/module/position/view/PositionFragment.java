@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bishe.qiuzhi.R;
+import com.bishe.qiuzhi.app.App;
 import com.bishe.qiuzhi.app.Constants;
 import com.bishe.qiuzhi.module.position.adapter.PositionAdapter;
 import com.bishe.qiuzhi.module.position.model.Filter;
@@ -190,7 +191,7 @@ public class PositionFragment extends Fragment {
 
             @Override
             public void onFail(String error) {
-                Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+                Toast.makeText(App.getInstance(), error, Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         });

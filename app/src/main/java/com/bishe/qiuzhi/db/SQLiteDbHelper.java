@@ -9,6 +9,7 @@ import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_T
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_MOBILE;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_NICK_NAME;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_TOKEN;
+import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_USER_EMAIL;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_USER_ID;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_COLUMN_USER_NAME;
 import static com.bishe.qiuzhi.module.login.model.LoginModel.UserinfoBean.USER_TABLE_NAME;
@@ -26,6 +27,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
             + USER_TABLE_COLUMN_USER_ID + " NVARCHAR(128) NOT NULL, "
             + USER_TABLE_COLUMN_USER_NAME + " NVARCHAR(128), "
             + USER_TABLE_COLUMN_NICK_NAME + " NVARCHAR(128), "
+            + USER_TABLE_COLUMN_USER_EMAIL + " NVARCHAR(128),"
             + USER_TABLE_COLUMN_MOBILE + " NVARCHAR(32), "
             + USER_TABLE_COLUMN_AVATAR + " NVARCHAR(1024), "
             + USER_TABLE_COLUMN_TOKEN + " NVARCHAR(128) NOT NULL);";

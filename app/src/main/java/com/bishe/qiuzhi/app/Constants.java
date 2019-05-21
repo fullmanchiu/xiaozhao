@@ -4,7 +4,7 @@ package com.bishe.qiuzhi.app;
  * 此类定义了一些常量
  */
 public class Constants {
-    public static final String DOMAIN = "http://xz.colafans.cn";
+    public static final String DOMAIN = "http://colafans.cn";
     public static final String EXTRA_POSITION_ID = "position_id";
     public static final String EXTRA_COMPANY_ID = "company_id";
     public static final String EXTRA_COMPANY_DESCRIBE = "company_describe";

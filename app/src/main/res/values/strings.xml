@@ -80,8 +80,14 @@
     <string name="username_cannot_change">方法一：使用注冊郵箱發送包含用戶名及联系电话的邮件至2418620804@qq.com,客服会联系你进行修改。\n方法二：致电18896527609，与客服沟通进行修改。服务时间：周一至周五9：30-17：00。\n特别提醒：用户名作为登陆凭证请勿随意修改，注意保护营私。</string>
     <string name="username_change_title">修改登陆用户名</string>
     <string name="nickname_modify">修改昵称</string>
-    <string name="nickname_modify_hint" />
+    <string name="nickname_modify_hint"></string>
     <string name="nickname">昵称</string>
+    <string name="text_account_settings_avatar">头像</string>
+    <string name="email_modify">修改邮箱</string>
+    <string name="email">邮箱</string>
+    <string name="email_modify_hint">修改成功后需使用新的邮箱登录</string>
+    <string name="mobile_modify_title">修改手机号</string>
+    <string name="mobile_modify_hint">方法一：使用注冊郵箱發送包含用戶名及联系电话的邮件至2418620804@qq.com,客服会联系你进行修改。\n方法二：致电18896527609，与客服沟通进行修改。服务时间：周一至周五9：30-17：00。\n特别提醒：手机号作为登陆凭证请勿随意修改，注意保护营私。</string>
     <string-array name="search_arr">
         <item>职位</item>
         <item>宣讲会</item>

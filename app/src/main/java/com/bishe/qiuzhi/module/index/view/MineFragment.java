@@ -1,6 +1,7 @@
 package com.bishe.qiuzhi.module.index.view;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -34,6 +35,15 @@ public class MineFragment extends Fragment {
     private LinearLayout llResume, llFav, llApply;
     private final int requestCodeLogin = 100;
     private final int requestCodeSignOut = 101;
+    private boolean init;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            initUserData();
+        }
+    }
 
     @Nullable
     @Override
@@ -45,6 +55,7 @@ public class MineFragment extends Fragment {
         rlAbout = view.findViewById(R.id.rl_about);
         rlSettings = view.findViewById(R.id.rl_settings);
         rlFeedBack = view.findViewById(R.id.rl_feedback);
+        init = true;
         rlFeedBack.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle(R.string.feedback);
@@ -104,6 +115,8 @@ public class MineFragment extends Fragment {
             initUserData();
             tvName.setOnClickListener(null);
         } else {
+            tvName.setText(R.string.loginHint);
+            ivAvatar.setImageResource(R.drawable.ic_default_avatar);
             tvName.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), LoginActivity.class), requestCodeLogin));
         }
         rlSettings.setOnClickListener(v -> startActivityForResult(new Intent(getContext(), SettingsActivity.class), requestCodeSignOut));
@@ -111,8 +124,22 @@ public class MineFragment extends Fragment {
     }
 
     private void initUserData() {
-        tvName.setText(App.getInstance().getUserData().getNickname());
-        Glide.with(getContext()).load(Constants.DOMAIN + App.getInstance().getUserData().getAvatar()).into(ivAvatar);
+        if (init && tvName != null && ivAvatar != null && !App.getInstance().isLogin()) {
+            tvName.setText(R.string.loginHint);
+            ivAvatar.setImageResource(R.drawable.ic_default_avatar);
+        }
+        if (init && tvName != null && ivAvatar != null && App.getInstance().isLogin()) {
+            tvName.setText(App.getInstance().getUserData().getNickname());
+            Glide.with(getContext()).load(Constants.DOMAIN + App.getInstance().getUserData().getAvatar()).into(ivAvatar);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getUserVisibleHint()) {
+            initUserData();
+        }
     }
 
     @Override
@@ -121,11 +148,13 @@ public class MineFragment extends Fragment {
             case requestCodeLogin:
                 if (resultCode == RESULT_OK) {
                     initUserData();
+                    ((MainActivity) getActivity()).setToOne();
                 }
                 break;
             case requestCodeSignOut:
                 if (requestCode == RESULT_OK) {
                     signOut();
+                    ((MainActivity) getActivity()).setToOne();
                 }
                 break;
             default:

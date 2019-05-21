@@ -115,4 +115,8 @@ public class MainActivity extends BaseActivity<MainPresenterImpl> implements Mai
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    public void setToOne() {
+        viewPager.setCurrentItem(0);
+    }
 }
