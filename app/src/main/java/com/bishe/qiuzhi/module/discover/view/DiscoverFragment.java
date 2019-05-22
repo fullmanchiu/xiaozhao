@@ -53,7 +53,11 @@ public class DiscoverFragment extends Fragment {
         Api.getDiscoverData(new OnGsonRespListener<List<DiscoverModel>>() {
             @Override
             public void onSuccess(List<DiscoverModel> data) {
-                adapter.setData(data);
+                if (data != null && data.size() != 0) {
+                    adapter.setData(data);
+                } else {
+                    Toast.makeText(getContext(), "第三方新闻资讯接口返回数据为空", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
