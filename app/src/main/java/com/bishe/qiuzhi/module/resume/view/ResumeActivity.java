@@ -14,7 +14,7 @@ import com.bishe.qiuzhi.net.OnGsonRespListener;
 import com.bishe.qiuzhi.wedgit.TitleBar;
 
 public class ResumeActivity extends BaseActivity<ResumePresenter> implements ResumeContract.View {
-    private TextView tvName, tvInfo, tvTel, tvEmail, tvSalary, tvLocation, tvIndustry, tvEdit;
+    private TextView tvName, tvInfo, tvTel, tvEmail, tvSalary, tvLocation, tvIndustry, tvEdit, tvSchool, tvStartTime, tvQualifications, tvSkill;
     private TitleBar titleBar;
 
     @Override
@@ -33,6 +33,10 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
         tvLocation = findViewById(R.id.tv_location);
         tvIndustry = findViewById(R.id.tv_industry);
         tvEdit = findViewById(R.id.tv_edit);
+        tvSchool = findViewById(R.id.tv_school);
+        tvStartTime = findViewById(R.id.tv_start_time);
+        tvQualifications = findViewById(R.id.tv_qualifications);
+        tvSkill = findViewById(R.id.tv_skill);
     }
 
     @Override
@@ -65,13 +69,15 @@ public class ResumeActivity extends BaseActivity<ResumePresenter> implements Res
                 tvSalary.setText(data.getTarget().getWork_salary());
                 tvLocation.setText(data.getTarget().getWork_address());
                 tvIndustry.setText(data.getTarget().getWork_industry());
-                Log.d("aaaaa", data.getMy_info().getName().toString());
+                tvSchool.setText(data.getEducation().getSchool());
+                tvStartTime.setText(data.getEducation().getStart_time() + "-" + data.getEducation().getEnd_time());
+                tvQualifications.setText(data.getEducation().getQualifications());
+                tvSkill.setText(data.getEducation().getSkill());
             }
 
             @Override
             public void onFail(String error) {
                 showDialog();
-                Log.d("aaaaa", error);
             }
         };
     }

@@ -104,6 +104,91 @@
                 app:layout_constraintTop_toTopOf="@id/iv_email" />
 
             <TextView
+                android:id="@+id/tv_edu_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:drawableStart="@drawable/shape_job_description"
+                android:drawablePadding="20dp"
+                android:gravity="center"
+                android:text="@string/edu_info"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_email" />
+
+            <ImageView
+                android:id="@+id/iv_school"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/tv_edu_tag"
+                app:layout_constraintTop_toBottomOf="@id/tv_edu_tag" />
+
+            <TextView
+                android:id="@+id/tv_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_school"
+                app:layout_constraintLeft_toRightOf="@id/iv_school"
+                app:layout_constraintTop_toTopOf="@id/iv_school" />
+
+            <ImageView
+                android:id="@+id/iv_start_time"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/iv_school"
+                app:layout_constraintTop_toBottomOf="@id/tv_school" />
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_start_time"
+                app:layout_constraintLeft_toRightOf="@id/iv_start_time"
+                app:layout_constraintTop_toTopOf="@id/iv_start_time" />
+
+            <ImageView
+                android:id="@+id/iv_qualifications"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintStart_toStartOf="@id/iv_start_time"
+                app:layout_constraintTop_toBottomOf="@id/tv_start_time" />
+
+            <TextView
+                android:id="@+id/tv_qualifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_qualifications"
+                app:layout_constraintLeft_toRightOf="@id/iv_qualifications"
+                app:layout_constraintTop_toTopOf="@id/iv_qualifications" />
+
+            <ImageView
+                android:id="@+id/iv_skill"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_nav_mine"
+                app:layout_constraintTop_toBottomOf="@id/tv_qualifications" />
+
+            <TextView
+                android:id="@+id/tv_skill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_skill"
+                app:layout_constraintLeft_toRightOf="@id/iv_skill"
+                app:layout_constraintTop_toTopOf="@id/iv_skill" />
+
+            <TextView
                 android:id="@+id/tv_target_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,7 +200,7 @@
                 android:textColor="@color/colorTextNormal"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_email" />
+                app:layout_constraintTop_toBottomOf="@id/tv_skill" />
 
             <ImageView
                 android:id="@+id/iv_salary"

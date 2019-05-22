@@ -85,11 +85,13 @@ public class AccountSettingsActivity extends BaseActivity<AccountSettingsPresent
         llEmail.setOnClickListener(v -> showEditDialog(getString(R.string.email_modify), getString(R.string.text_account_settings_email),
                 getString(R.string.email),
                 getString(R.string.email_modify_hint), EMAIL));
-        llMobile.setOnClickListener(v -> showAlert(getString(R.string.mobile_modify_title), getString(R.string.mobile_modify_title)));
+        llMobile.setOnClickListener(v -> showEditDialog(getString(R.string.mobile_modify_title),
+                getString(R.string.mobile),
+                getString(R.string.mobile), getString(R.string.mobile_modify_hint), MOBILE));
         llpwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //pwd
+                showAlert(getString(R.string.pwd_modify_title), getString((R.string.pwd_modify_hint)));
             }
         });
         llLogout.setOnClickListener(v -> showAlert(getString(R.string.text_account_settings_logout), getString(R.string.username_cannot_change)));
