@@ -93,7 +93,7 @@ public class MineFragment extends Fragment {
             startActivity(Intent.createChooser(intent, getString(R.string.share)));
         });
         rlAbout.setOnClickListener(v -> {
-            Uri uri = Uri.parse("http://www.colafans.cn:8081/index.php/index/index/index");
+            Uri uri = Uri.parse("http://www.colafans.cn/index.php/index/index/index");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
