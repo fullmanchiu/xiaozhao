@@ -8,7 +8,6 @@
     <com.bishe.qiuzhi.wedgit.NiceToolBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:rightIcon="@drawable/ic_toolbar_search"
         app:title="@string/navDiscover" />
 
     <android.support.v7.widget.RecyclerView
